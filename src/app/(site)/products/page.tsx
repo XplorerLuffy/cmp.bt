@@ -10,28 +10,40 @@ export default async function ProductsPage() {
   });
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-brand-night">Our Pickles</h1>
-      {products.length === 0 ? (
-        <p className="text-brand-night/60">No products available yet. Check back soon!</p>
-      ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {products.map((p) => (
-            <ProductCard
-              key={p.id}
-              product={{
-                id: p.id,
-                slug: p.slug,
-                name: p.name,
-                description: p.description,
-                price: p.price,
-                imageUrl: p.imageUrl,
-                outOfStock: p.outOfStock,
-              }}
-            />
-          ))}
+    <div>
+      <div className="border-b border-brand-night/10 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-center sm:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-chili">
+            The Collection
+          </p>
+          <h1 className="font-display text-3xl font-medium text-brand-night sm:text-4xl">
+            Our Pickles
+          </h1>
         </div>
-      )}
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 py-10">
+        {products.length === 0 ? (
+          <p className="text-brand-night/60">No products available yet. Check back soon!</p>
+        ) : (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {products.map((p) => (
+              <ProductCard
+                key={p.id}
+                product={{
+                  id: p.id,
+                  slug: p.slug,
+                  name: p.name,
+                  description: p.description,
+                  price: p.price,
+                  imageUrl: p.imageUrl,
+                  outOfStock: p.outOfStock,
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

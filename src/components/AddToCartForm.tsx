@@ -59,7 +59,7 @@ export default function AddToCartForm({
         type="button"
         disabled={outOfStock}
         onClick={handleAdd}
-        className="rounded-full bg-brand-night px-6 py-3 font-semibold text-brand-cream disabled:cursor-not-allowed disabled:opacity-40"
+        className="rounded-full bg-brand-night px-6 py-3 font-display font-semibold text-brand-cream transition hover:bg-brand-night-light disabled:cursor-not-allowed disabled:opacity-40"
       >
         {outOfStock ? "Out of Stock" : added ? "Added ✓" : "Add to Cart"}
       </button>
@@ -67,7 +67,7 @@ export default function AddToCartForm({
         <button
           type="button"
           onClick={() => router.push("/cart")}
-          className="text-sm font-medium text-brand-night-light hover:underline"
+          className="text-sm font-medium text-brand-chili hover:underline"
         >
           View Cart →
         </button>

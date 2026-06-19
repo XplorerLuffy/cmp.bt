@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatBTN } from "@/lib/format";
@@ -17,9 +18,12 @@ export default async function ProductDetailPage({
   if (!product || !product.isActive) notFound();
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
-      <div className="grid gap-8 sm:grid-cols-2">
-        <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-brand-night/5">
+    <div className="mx-auto max-w-5xl px-4 py-10">
+      <Link href="/products" className="mb-6 inline-block text-sm font-medium text-brand-night/60 hover:text-brand-chili">
+        ← Back to Shop
+      </Link>
+      <div className="grid gap-10 sm:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-moon-soft to-brand-cream">
           {product.imageUrl ? (
             <Image src={product.imageUrl} alt={product.name} fill className="object-cover" />
           ) : (
@@ -27,22 +31,22 @@ export default async function ProductDetailPage({
           )}
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5">
           <div>
-            <p className="text-sm font-medium uppercase tracking-wide text-brand-night-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-chili">
               {product.category}
             </p>
-            <h1 className="text-2xl font-bold text-brand-night">{product.name}</h1>
-            <p className="mt-2 text-xl font-bold text-brand-night-light">
+            <h1 className="font-display text-3xl font-medium text-brand-night">{product.name}</h1>
+            <p className="mt-2 font-display text-2xl font-bold text-brand-chili">
               {formatBTN(product.price)}
             </p>
           </div>
 
-          <p className="text-brand-night/80">{product.description}</p>
+          <p className="leading-relaxed text-brand-night/80">{product.description}</p>
 
           {product.ingredients && (
-            <div>
-              <h2 className="font-semibold text-brand-night">Ingredients</h2>
+            <div className="rounded-xl border border-brand-night/10 bg-white p-4">
+              <h2 className="mb-1 font-display font-semibold text-brand-night">Ingredients</h2>
               <p className="text-sm text-brand-night/70">{product.ingredients}</p>
             </div>
           )}

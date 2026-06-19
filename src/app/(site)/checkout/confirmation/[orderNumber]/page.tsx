@@ -20,17 +20,19 @@ export default async function OrderConfirmationPage({
   if (!order) notFound();
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12 text-center">
-      <p className="mb-2 text-5xl">✅</p>
-      <h1 className="mb-2 text-2xl font-bold text-brand-night">Thank you, {order.customerName}!</h1>
-      <p className="mb-6 text-brand-night/70">
+    <div className="mx-auto max-w-2xl px-4 py-16 text-center">
+      <p className="mb-3 text-5xl">🌙</p>
+      <h1 className="mb-2 font-display text-2xl font-medium text-brand-night">
+        Thank you, {order.customerName}!
+      </h1>
+      <p className="mb-8 text-brand-night/70">
         Your order has been placed. We&apos;ll contact you at {order.phone} to confirm delivery.
       </p>
 
-      <div className="rounded-lg border border-brand-night/10 bg-white p-6 text-left">
+      <div className="rounded-2xl border border-brand-night/10 bg-white p-6 text-left">
         <div className="mb-4 flex items-center justify-between">
-          <span className="font-semibold text-brand-night">Order #{order.orderNumber}</span>
-          <span className="rounded-full bg-brand-moon/30 px-3 py-1 text-xs font-semibold text-brand-night">
+          <span className="font-display font-semibold text-brand-night">Order #{order.orderNumber}</span>
+          <span className="rounded-full bg-brand-moon-soft px-3 py-1 text-xs font-semibold text-brand-night">
             {ORDER_STATUS_LABELS[order.status]}
           </span>
         </div>
@@ -46,9 +48,9 @@ export default async function OrderConfirmationPage({
           ))}
         </ul>
 
-        <div className="flex justify-between font-bold text-brand-night">
+        <div className="flex justify-between font-display font-bold text-brand-night">
           <span>Total</span>
-          <span>{formatBTN(order.subtotal)}</span>
+          <span className="text-brand-chili">{formatBTN(order.subtotal)}</span>
         </div>
 
         <div className="mt-4 text-sm text-brand-night/70">
@@ -57,7 +59,7 @@ export default async function OrderConfirmationPage({
         </div>
       </div>
 
-      <Link href="/products" className="mt-6 inline-block font-medium text-brand-night-light hover:underline">
+      <Link href="/products" className="mt-6 inline-block font-medium text-brand-night-light hover:text-brand-chili">
         ← Continue Shopping
       </Link>
     </div>
