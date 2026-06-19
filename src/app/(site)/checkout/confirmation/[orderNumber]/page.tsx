@@ -1,0 +1,65 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { formatBTN } from "@/lib/format";
+import { ORDER_STATUS_LABELS } from "@/lib/orders";
+
+export const dynamic = "force-dynamic";
+
+export default async function OrderConfirmationPage({
+  params,
+}: {
+  params: Promise<{ orderNumber: string }>;
+}) {
+  const { orderNumber } = await params;
+  const order = await prisma.order.findUnique({
+    where: { orderNumber },
+    include: { items: true },
+  });
+
+  if (!order) notFound();
+
+  return (
+    <div className="mx-auto max-w-2xl px-4 py-12 text-center">
+      <p className="mb-2 text-5xl">✅</p>
+      <h1 className="mb-2 text-2xl font-bold text-brand-night">Thank you, {order.customerName}!</h1>
+      <p className="mb-6 text-brand-night/70">
+        Your order has been placed. We&apos;ll contact you at {order.phone} to confirm delivery.
+      </p>
+
+      <div className="rounded-lg border border-brand-night/10 bg-white p-6 text-left">
+        <div className="mb-4 flex items-center justify-between">
+          <span className="font-semibold text-brand-night">Order #{order.orderNumber}</span>
+          <span className="rounded-full bg-brand-moon/30 px-3 py-1 text-xs font-semibold text-brand-night">
+            {ORDER_STATUS_LABELS[order.status]}
+          </span>
+        </div>
+
+        <ul className="mb-4 flex flex-col gap-2 border-b border-brand-night/10 pb-4">
+          {order.items.map((item) => (
+            <li key={item.id} className="flex justify-between text-sm">
+              <span>
+                {item.name} × {item.quantity}
+              </span>
+              <span>{formatBTN(item.price * item.quantity)}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex justify-between font-bold text-brand-night">
+          <span>Total</span>
+          <span>{formatBTN(order.subtotal)}</span>
+        </div>
+
+        <div className="mt-4 text-sm text-brand-night/70">
+          <p>Payment Method: {order.paymentMethod === "COD" ? "Cash on Delivery" : "Bank Transfer"}</p>
+          <p>Delivery Address: {order.address}, {order.dzongkhag}</p>
+        </div>
+      </div>
+
+      <Link href="/products" className="mt-6 inline-block font-medium text-brand-night-light hover:underline">
+        ← Continue Shopping
+      </Link>
+    </div>
+  );
+}
