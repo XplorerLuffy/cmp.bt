@@ -136,7 +136,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
       <button
         type="submit"
         disabled={submitting}
-        className="rounded-full bg-brand-night px-6 py-3 font-semibold text-brand-cream disabled:opacity-50"
+        className="rounded-full bg-brand-ink px-6 py-3 font-semibold text-brand-tint disabled:opacity-50"
       >
         {submitting ? "Saving..." : isEdit ? "Save Changes" : "Add Product"}
       </button>
@@ -149,7 +149,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-sm font-medium text-brand-night/80">{label}</span>
+      <span className="text-sm font-medium text-brand-ink/80">{label}</span>
       {children}
     </label>
   );

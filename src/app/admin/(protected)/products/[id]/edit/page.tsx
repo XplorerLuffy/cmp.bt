@@ -15,7 +15,7 @@ export default async function EditProductPage({
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-brand-night">Edit Product</h1>
+      <h1 className="mb-6 text-2xl font-bold text-brand-ink">Edit Product</h1>
       <ProductForm
         initial={{
           id: product.id,

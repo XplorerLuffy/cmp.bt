@@ -11,19 +11,19 @@ export default async function AdminProductsPage() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-brand-night">Products</h1>
+        <h1 className="text-2xl font-bold text-brand-ink">Products</h1>
         <Link
           href="/admin/products/new"
-          className="rounded-full bg-brand-night px-4 py-2 text-sm font-semibold text-brand-cream"
+          className="rounded-full bg-brand-ink px-4 py-2 text-sm font-semibold text-brand-tint"
         >
           + Add Product
         </Link>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-brand-night/10 bg-white">
+      <div className="overflow-x-auto rounded-xl border border-brand-ink/10 bg-white">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-brand-night/10 text-left text-brand-night/60">
+            <tr className="border-b border-brand-ink/10 text-left text-brand-ink/60">
               <th className="p-3">Name</th>
               <th className="p-3">Category</th>
               <th className="p-3">Price</th>
@@ -34,9 +34,9 @@ export default async function AdminProductsPage() {
           </thead>
           <tbody>
             {products.map((p) => (
-              <tr key={p.id} className="border-b border-brand-night/5 align-top">
+              <tr key={p.id} className="border-b border-brand-ink/5 align-top">
                 <td className="p-3">
-                  <Link href={`/admin/products/${p.id}/edit`} className="font-medium text-brand-night-light hover:underline">
+                  <Link href={`/admin/products/${p.id}/edit`} className="font-medium text-brand-blue-light hover:underline">
                     {p.name}
                   </Link>
                 </td>
@@ -55,7 +55,7 @@ export default async function AdminProductsPage() {
             ))}
             {products.length === 0 && (
               <tr>
-                <td colSpan={6} className="p-6 text-center text-brand-night/50">
+                <td colSpan={6} className="p-6 text-center text-brand-ink/50">
                   No products yet. Add your first one!
                 </td>
               </tr>

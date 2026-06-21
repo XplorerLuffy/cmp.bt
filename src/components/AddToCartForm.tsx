@@ -33,8 +33,8 @@ export default function AddToCartForm({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <span className="text-sm font-medium text-brand-night/70">Quantity</span>
-        <div className="flex items-center rounded-full border border-brand-night/20">
+        <span className="text-sm font-medium text-brand-ink/70">Quantity</span>
+        <div className="flex items-center rounded-full border border-brand-ink/20">
           <button
             type="button"
             className="h-9 w-9 text-lg disabled:opacity-30"
@@ -59,7 +59,7 @@ export default function AddToCartForm({
         type="button"
         disabled={outOfStock}
         onClick={handleAdd}
-        className="rounded-full bg-brand-night px-6 py-3 font-display font-semibold text-brand-cream transition hover:bg-brand-night-light disabled:cursor-not-allowed disabled:opacity-40"
+        className="rounded-full bg-brand-ink px-6 py-3 font-display font-semibold text-brand-tint transition hover:bg-brand-blue-light disabled:cursor-not-allowed disabled:opacity-40"
       >
         {outOfStock ? "Out of Stock" : added ? "Added ✓" : "Add to Cart"}
       </button>
@@ -67,7 +67,7 @@ export default function AddToCartForm({
         <button
           type="button"
           onClick={() => router.push("/cart")}
-          className="text-sm font-medium text-brand-chili hover:underline"
+          className="text-sm font-medium text-brand-blue hover:underline"
         >
           View Cart →
         </button>

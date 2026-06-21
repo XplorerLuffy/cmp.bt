@@ -22,7 +22,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-brand-night">Dashboard</h1>
+      <h1 className="mb-6 text-2xl font-bold text-brand-ink">Dashboard</h1>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Orders" value={orders.toString()} />
@@ -37,17 +37,17 @@ export default async function AdminDashboardPage() {
         <StatCard label="Processing" value={(countsByStatus.PROCESSING ?? 0).toString()} />
       </div>
 
-      <div className="rounded-xl border border-brand-night/10 bg-white p-4">
+      <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-semibold text-brand-night">Recent Orders</h2>
-          <Link href="/admin/orders" className="text-sm font-medium text-brand-night-light hover:underline">
+          <h2 className="font-semibold text-brand-ink">Recent Orders</h2>
+          <Link href="/admin/orders" className="text-sm font-medium text-brand-blue-light hover:underline">
             View all →
           </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-brand-night/10 text-left text-brand-night/60">
+              <tr className="border-b border-brand-ink/10 text-left text-brand-ink/60">
                 <th className="py-2 pr-4">Order #</th>
                 <th className="py-2 pr-4">Customer</th>
                 <th className="py-2 pr-4">Total</th>
@@ -57,9 +57,9 @@ export default async function AdminDashboardPage() {
             </thead>
             <tbody>
               {recentOrders.map((order) => (
-                <tr key={order.id} className="border-b border-brand-night/5">
+                <tr key={order.id} className="border-b border-brand-ink/5">
                   <td className="py-2 pr-4">
-                    <Link href={`/admin/orders/${order.id}`} className="font-medium text-brand-night-light hover:underline">
+                    <Link href={`/admin/orders/${order.id}`} className="font-medium text-brand-blue-light hover:underline">
                       {order.orderNumber}
                     </Link>
                   </td>
@@ -71,7 +71,7 @@ export default async function AdminDashboardPage() {
               ))}
               {recentOrders.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="py-6 text-center text-brand-night/50">
+                  <td colSpan={5} className="py-6 text-center text-brand-ink/50">
                     No orders yet.
                   </td>
                 </tr>
@@ -86,9 +86,9 @@ export default async function AdminDashboardPage() {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-brand-night/10 bg-white p-4">
-      <p className="text-sm text-brand-night/60">{label}</p>
-      <p className="text-2xl font-bold text-brand-night">{value}</p>
+    <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
+      <p className="text-sm text-brand-ink/60">{label}</p>
+      <p className="text-2xl font-bold text-brand-ink">{value}</p>
     </div>
   );
 }

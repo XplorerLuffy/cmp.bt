@@ -35,10 +35,10 @@ export default function OrderStatusControls({
   return (
     <div className="flex flex-col gap-3">
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-brand-night/80">Order Status</span>
+        <span className="text-sm font-medium text-brand-ink/80">Order Status</span>
         <select
           disabled={updating}
-          className="rounded-lg border border-brand-night/20 p-2"
+          className="rounded-lg border border-brand-ink/20 p-2"
           value={status}
           onChange={(e) => updateOrder({ status: e.target.value })}
         >
@@ -58,7 +58,7 @@ export default function OrderStatusControls({
             checked={paymentVerified}
             onChange={(e) => updateOrder({ paymentVerified: e.target.checked })}
           />
-          <span className="text-sm font-medium text-brand-night/80">
+          <span className="text-sm font-medium text-brand-ink/80">
             Bank transfer payment verified/received
           </span>
         </label>

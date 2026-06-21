@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { formatBTN } from "@/lib/format";
 import { DZONGKHAGS } from "@/lib/orders";
@@ -83,8 +84,13 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="mb-6 font-display text-2xl font-medium text-brand-night">Checkout</h1>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="mx-auto max-w-3xl px-4 py-10"
+    >
+      <h1 className="mb-6 font-display text-2xl font-medium text-brand-ink">Checkout</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -140,7 +146,7 @@ export default function CheckoutPage() {
         </Field>
 
         <div>
-          <span className="mb-2 block text-sm font-medium text-brand-night/80">Payment Method</span>
+          <span className="mb-2 block text-sm font-medium text-brand-ink/80">Payment Method</span>
           <div className="flex flex-col gap-3 sm:flex-row">
             <PaymentOption
               label="Cash on Delivery"
@@ -158,12 +164,12 @@ export default function CheckoutPage() {
         </div>
 
         {form.paymentMethod === "BANK_TRANSFER" && (
-          <div className="rounded-xl border border-brand-moon bg-brand-moon-soft/40 p-4 text-sm">
-            <p className="mb-2 font-display font-semibold text-brand-night">Bank Account Details</p>
+          <div className="rounded-xl border border-brand-blue bg-brand-blue/10 p-4 text-sm">
+            <p className="mb-2 font-display font-semibold text-brand-ink">Bank Account Details</p>
             <p>Bank: {BANK_DETAILS.bankName}</p>
             <p>Account Name: {BANK_DETAILS.accountName}</p>
             <p>Account Number: {BANK_DETAILS.accountNumber}</p>
-            <p className="mt-2 text-brand-night/70">
+            <p className="mt-2 text-brand-ink/70">
               Please make the transfer and place your order. Your order will be marked
               &quot;Pending Payment Verification&quot; until we confirm receipt.
             </p>
@@ -179,10 +185,10 @@ export default function CheckoutPage() {
           />
         </Field>
 
-        <div className="rounded-xl border border-brand-night/10 bg-white p-4">
-          <div className="flex justify-between font-display font-semibold text-brand-night">
+        <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
+          <div className="flex justify-between font-display font-semibold text-brand-ink">
             <span>Subtotal ({items.length} item{items.length !== 1 ? "s" : ""})</span>
-            <span className="text-brand-chili">{formatBTN(subtotal)}</span>
+            <span className="text-brand-blue">{formatBTN(subtotal)}</span>
           </div>
         </div>
 
@@ -191,14 +197,14 @@ export default function CheckoutPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-full bg-brand-night py-3.5 font-display font-semibold text-brand-cream transition hover:bg-brand-night-light disabled:opacity-50"
+          className="rounded-full bg-brand-ink py-3.5 font-display font-semibold text-brand-tint transition hover:bg-brand-blue-light disabled:opacity-50"
         >
           {submitting ? "Placing Order..." : "Place Order"}
         </button>
       </form>
 
-      <style>{`.input { width: 100%; border: 1px solid rgba(21,16,42,0.15); border-radius: 0.75rem; padding: 0.625rem 0.75rem; background: white; }`}</style>
-    </div>
+      <style>{`.input { width: 100%; border: 1px solid rgba(10,10,10,0.15); border-radius: 0.75rem; padding: 0.625rem 0.75rem; background: white; }`}</style>
+    </motion.div>
   );
 }
 
@@ -213,7 +219,7 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-sm font-medium text-brand-night/80">{label}</span>
+      <span className="text-sm font-medium text-brand-ink/80">{label}</span>
       {children}
       {error && <span className="text-xs font-medium text-red-600">{error}</span>}
     </label>
@@ -236,11 +242,11 @@ function PaymentOption({
       type="button"
       onClick={onClick}
       className={`flex-1 rounded-xl border p-3 text-left transition ${
-        selected ? "border-brand-night bg-brand-night/5" : "border-brand-night/15"
+        selected ? "border-brand-ink bg-brand-ink/5" : "border-brand-ink/15"
       }`}
     >
-      <p className="font-display font-semibold text-brand-night">{label}</p>
-      <p className="text-xs text-brand-night/60">{description}</p>
+      <p className="font-display font-semibold text-brand-ink">{label}</p>
+      <p className="text-xs text-brand-ink/60">{description}</p>
     </button>
   );
 }

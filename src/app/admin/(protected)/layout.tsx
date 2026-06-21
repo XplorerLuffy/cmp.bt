@@ -13,7 +13,7 @@ export default async function AdminProtectedLayout({
   return (
     <div className="flex min-h-screen flex-col sm:flex-row">
       <AdminSidebar />
-      <main className="flex-1 bg-brand-cream p-4 sm:p-8">{children}</main>
+      <main className="flex-1 bg-brand-tint p-4 sm:p-8">{children}</main>
     </div>
   );
 }

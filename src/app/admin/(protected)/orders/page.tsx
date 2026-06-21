@@ -19,7 +19,7 @@ export default async function AdminOrdersPage({
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-brand-night">Orders</h1>
+      <h1 className="mb-6 text-2xl font-bold text-brand-ink">Orders</h1>
 
       <div className="mb-4 flex flex-wrap gap-2">
         <FilterLink label="All" status={undefined} active={!status} />
@@ -28,10 +28,10 @@ export default async function AdminOrdersPage({
         ))}
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-brand-night/10 bg-white">
+      <div className="overflow-x-auto rounded-xl border border-brand-ink/10 bg-white">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-brand-night/10 text-left text-brand-night/60">
+            <tr className="border-b border-brand-ink/10 text-left text-brand-ink/60">
               <th className="p-3">Order #</th>
               <th className="p-3">Customer</th>
               <th className="p-3">Payment</th>
@@ -42,9 +42,9 @@ export default async function AdminOrdersPage({
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order.id} className="border-b border-brand-night/5">
+              <tr key={order.id} className="border-b border-brand-ink/5">
                 <td className="p-3">
-                  <Link href={`/admin/orders/${order.id}`} className="font-medium text-brand-night-light hover:underline">
+                  <Link href={`/admin/orders/${order.id}`} className="font-medium text-brand-blue-light hover:underline">
                     {order.orderNumber}
                   </Link>
                 </td>
@@ -57,7 +57,7 @@ export default async function AdminOrdersPage({
             ))}
             {orders.length === 0 && (
               <tr>
-                <td colSpan={6} className="p-6 text-center text-brand-night/50">
+                <td colSpan={6} className="p-6 text-center text-brand-ink/50">
                   No orders found.
                 </td>
               </tr>
@@ -82,7 +82,7 @@ function FilterLink({
     <Link
       href={status ? `/admin/orders?status=${status}` : "/admin/orders"}
       className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-        active ? "bg-brand-night text-brand-cream" : "bg-brand-night/5 text-brand-night/70"
+        active ? "bg-brand-ink text-brand-tint" : "bg-brand-ink/5 text-brand-ink/70"
       }`}
     >
       {label}

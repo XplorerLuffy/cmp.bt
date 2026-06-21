@@ -20,7 +20,7 @@ export default function AdminSidebar() {
   }
 
   return (
-    <aside className="w-full border-b border-brand-night-light bg-brand-night text-brand-cream sm:w-56 sm:min-h-screen sm:border-b-0 sm:border-r">
+    <aside className="w-full border-b border-brand-blue-light bg-brand-ink text-brand-tint sm:w-56 sm:min-h-screen sm:border-b-0 sm:border-r">
       <div className="px-4 py-4 font-semibold">🌙 Crystal Moon Admin</div>
       <nav className="flex gap-1 px-2 pb-2 sm:flex-col">
         {LINKS.map((link) => {
@@ -30,7 +30,7 @@ export default function AdminSidebar() {
               key={link.href}
               href={link.href}
               className={`rounded px-3 py-2 text-sm font-medium ${
-                active ? "bg-brand-moon text-brand-night" : "hover:bg-brand-night-light"
+                active ? "bg-brand-blue text-white" : "hover:bg-white/10"
               }`}
             >
               {link.label}
@@ -39,7 +39,7 @@ export default function AdminSidebar() {
         })}
         <button
           onClick={handleLogout}
-          className="mt-2 rounded px-3 py-2 text-left text-sm font-medium text-brand-cream/80 hover:bg-brand-night-light"
+          className="mt-2 rounded px-3 py-2 text-left text-sm font-medium text-brand-tint/80 hover:bg-brand-blue-light"
         >
           Log Out
         </button>
