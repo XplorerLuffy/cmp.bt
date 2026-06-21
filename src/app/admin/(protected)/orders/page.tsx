@@ -28,7 +28,37 @@ export default async function AdminOrdersPage({
         ))}
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-brand-ink/10 bg-white">
+      {/* Mobile: stacked cards */}
+      <div className="flex flex-col gap-3 sm:hidden">
+        {orders.map((order) => (
+          <Link
+            key={order.id}
+            href={`/admin/orders/${order.id}`}
+            className="block rounded-xl border border-brand-ink/10 bg-white p-4"
+          >
+            <div className="mb-1 flex items-center justify-between">
+              <span className="font-medium text-brand-blue-light">{order.orderNumber}</span>
+              <span className="font-semibold text-brand-ink">{formatBTN(order.subtotal)}</span>
+            </div>
+            <p className="text-sm text-brand-ink/80">{order.customerName}</p>
+            <div className="mt-2 flex items-center justify-between text-xs text-brand-ink/60">
+              <span>{order.paymentMethod === "COD" ? "COD" : "Bank Transfer"}</span>
+              <span>{order.createdAt.toLocaleDateString()}</span>
+            </div>
+            <p className="mt-2 inline-block rounded-full bg-brand-ink/5 px-2 py-1 text-xs font-medium text-brand-ink">
+              {ORDER_STATUS_LABELS[order.status]}
+            </p>
+          </Link>
+        ))}
+        {orders.length === 0 && (
+          <p className="rounded-xl border border-brand-ink/10 bg-white p-6 text-center text-brand-ink/50">
+            No orders found.
+          </p>
+        )}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="hidden overflow-x-auto rounded-xl border border-brand-ink/10 bg-white sm:block">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-brand-ink/10 text-left text-brand-ink/60">

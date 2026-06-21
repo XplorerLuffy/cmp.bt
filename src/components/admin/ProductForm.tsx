@@ -57,7 +57,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex max-w-xl flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex w-full max-w-xl flex-col gap-4">
       <Field label="Name">
         <input
           required
@@ -86,7 +86,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
         />
       </Field>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Field label="Price (Nu.)">
           <input
             required
@@ -136,7 +136,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
       <button
         type="submit"
         disabled={submitting}
-        className="rounded-full bg-brand-ink px-6 py-3 font-semibold text-brand-tint disabled:opacity-50"
+        className="w-full rounded-full bg-brand-ink px-6 py-3 font-semibold text-brand-tint disabled:opacity-50 sm:w-auto"
       >
         {submitting ? "Saving..." : isEdit ? "Save Changes" : "Add Product"}
       </button>

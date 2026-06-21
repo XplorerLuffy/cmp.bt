@@ -44,7 +44,7 @@ export default function CartPage() {
         {items.map((item) => (
           <div
             key={item.productId}
-            className="flex items-center gap-4 rounded-xl border border-brand-ink/10 bg-white p-3"
+            className="flex flex-wrap items-center gap-3 rounded-xl border border-brand-ink/10 bg-white p-3 sm:flex-nowrap sm:gap-4"
           >
             <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-brand-blue/10 to-brand-tint">
               {item.imageUrl ? (
@@ -53,7 +53,7 @@ export default function CartPage() {
                 <div className="flex h-full items-center justify-center text-2xl">🫙</div>
               )}
             </div>
-            <div className="flex-1">
+            <div className="min-w-[8rem] flex-1 basis-full sm:basis-auto">
               <Link href={`/products/${item.slug}`} className="font-medium text-brand-ink hover:text-brand-blue">
                 {item.name}
               </Link>
@@ -61,14 +61,14 @@ export default function CartPage() {
             </div>
             <div className="flex items-center rounded-full border border-brand-ink/20">
               <button
-                className="h-8 w-8 text-lg"
+                className="h-9 w-9 text-lg sm:h-8 sm:w-8"
                 onClick={() => updateQuantity(item.productId, item.quantity - 1)}
               >
                 −
               </button>
               <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
               <button
-                className="h-8 w-8 text-lg"
+                className="h-9 w-9 text-lg sm:h-8 sm:w-8"
                 onClick={() => updateQuantity(item.productId, item.quantity + 1)}
               >
                 +
@@ -76,7 +76,7 @@ export default function CartPage() {
             </div>
             <button
               aria-label="Remove item"
-              className="text-brand-ink/40 hover:text-brand-blue"
+              className="flex h-9 w-9 items-center justify-center text-brand-ink/40 hover:text-brand-blue"
               onClick={() => removeItem(item.productId)}
             >
               ✕

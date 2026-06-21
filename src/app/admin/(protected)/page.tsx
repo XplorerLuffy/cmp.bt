@@ -44,7 +44,32 @@ export default async function AdminDashboardPage() {
             View all →
           </Link>
         </div>
-        <div className="overflow-x-auto">
+        {/* Mobile: stacked cards */}
+        <div className="flex flex-col gap-2 sm:hidden">
+          {recentOrders.map((order) => (
+            <Link
+              key={order.id}
+              href={`/admin/orders/${order.id}`}
+              className="block rounded-lg border border-brand-ink/10 p-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-brand-blue-light">{order.orderNumber}</span>
+                <span className="font-semibold text-brand-ink">{formatBTN(order.subtotal)}</span>
+              </div>
+              <p className="text-sm text-brand-ink/70">{order.customerName}</p>
+              <div className="mt-1 flex items-center justify-between text-xs text-brand-ink/50">
+                <span>{ORDER_STATUS_LABELS[order.status]}</span>
+                <span>{order.createdAt.toLocaleDateString()}</span>
+              </div>
+            </Link>
+          ))}
+          {recentOrders.length === 0 && (
+            <p className="py-6 text-center text-brand-ink/50">No orders yet.</p>
+          )}
+        </div>
+
+        {/* Desktop: table */}
+        <div className="hidden overflow-x-auto sm:block">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-brand-ink/10 text-left text-brand-ink/60">

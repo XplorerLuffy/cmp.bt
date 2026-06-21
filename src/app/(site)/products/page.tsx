@@ -27,7 +27,7 @@ export default async function ProductsPage() {
         {products.length === 0 ? (
           <p className="text-brand-ink/60">No products available yet. Check back soon!</p>
         ) : (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((p) => (
               <ProductCard
                 key={p.id}

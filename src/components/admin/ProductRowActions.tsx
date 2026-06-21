@@ -43,21 +43,21 @@ export default function ProductRowActions({
       <button
         disabled={busy}
         onClick={() => toggle("outOfStock", !outOfStock)}
-        className="rounded border border-brand-ink/20 px-2 py-1 hover:bg-brand-ink/5"
+        className="rounded border border-brand-ink/20 px-2.5 py-1.5 hover:bg-brand-ink/5"
       >
         {outOfStock ? "Mark In Stock" : "Mark Out of Stock"}
       </button>
       <button
         disabled={busy}
         onClick={() => toggle("isActive", !isActive)}
-        className="rounded border border-brand-ink/20 px-2 py-1 hover:bg-brand-ink/5"
+        className="rounded border border-brand-ink/20 px-2.5 py-1.5 hover:bg-brand-ink/5"
       >
         {isActive ? "Deactivate" : "Activate"}
       </button>
       <button
         disabled={busy}
         onClick={handleDelete}
-        className="rounded border border-red-300 px-2 py-1 text-red-600 hover:bg-red-50"
+        className="rounded border border-red-300 px-2.5 py-1.5 text-red-600 hover:bg-red-50"
       >
         Delete
       </button>
