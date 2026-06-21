@@ -10,6 +10,13 @@
   --brand-ink: #0a0a0a;
   --brand-white: #ffffff;
   --brand-tint: #f4f7fd;
+
+  --accent-green: #16a34a;
+  --accent-green-tint: #dcfce7;
+  --accent-amber: #d97706;
+  --accent-amber-tint: #fef3c7;
+  --accent-rose: #e11d48;
+  --accent-rose-tint: #ffe4e6;
 }
 
 @theme inline {
@@ -21,6 +28,12 @@
   --color-brand-ink: var(--brand-ink);
   --color-brand-white: var(--brand-white);
   --color-brand-tint: var(--brand-tint);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-tint: var(--accent-green-tint);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-amber-tint: var(--accent-amber-tint);
+  --color-accent-rose: var(--accent-rose);
+  --color-accent-rose-tint: var(--accent-rose-tint);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }

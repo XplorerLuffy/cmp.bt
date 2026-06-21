@@ -57,7 +57,10 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-xl flex-col gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full max-w-xl flex-col gap-4 rounded-xl border border-brand-ink/10 bg-white p-5 shadow-sm sm:p-6"
+    >
       <Field label="Name">
         <input
           required
@@ -144,7 +147,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
         {submitting ? "Saving..." : isEdit ? "Save Changes" : "Add Product"}
       </button>
 
-      <style>{`.field { width: 100%; border: 1px solid rgba(27,19,48,0.2); border-radius: 0.5rem; padding: 0.625rem 0.75rem; }`}</style>
+      <style>{`.field { width: 100%; border: 1px solid rgba(27,19,48,0.15); border-radius: 0.5rem; padding: 0.625rem 0.75rem; transition: border-color 0.15s ease; } .field:focus { outline: none; border-color: var(--brand-blue); }`}</style>
     </form>
   );
 }

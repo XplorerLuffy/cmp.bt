@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatBTN } from "@/lib/format";
 import OrderStatusControls from "@/components/OrderStatusControls";
+import StatusBadge from "@/components/admin/StatusBadge";
 
 export const dynamic = "force-dynamic";
 
@@ -16,13 +17,16 @@ export default async function AdminOrderDetailPage({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-brand-ink">Order #{order.orderNumber}</h1>
-      <p className="mb-6 text-sm text-brand-ink/60">
-        Placed on {order.createdAt.toLocaleString()}
-      </p>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <h1 className="mb-1 text-2xl font-bold text-brand-ink">Order #{order.orderNumber}</h1>
+          <p className="text-sm text-brand-ink/60">Placed on {order.createdAt.toLocaleString()}</p>
+        </div>
+        <StatusBadge status={order.status} />
+      </div>
 
       <div className="mb-6 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
+        <div className="rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm">
           <h2 className="mb-2 font-semibold text-brand-ink">Customer Details</h2>
           <p className="text-sm">{order.customerName}</p>
           <p className="text-sm">{order.phone}</p>
@@ -33,7 +37,7 @@ export default async function AdminOrderDetailPage({
           )}
         </div>
 
-        <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
+        <div className="rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm">
           <h2 className="mb-2 font-semibold text-brand-ink">Update Order</h2>
           <OrderStatusControls
             orderId={order.id}
@@ -44,7 +48,7 @@ export default async function AdminOrderDetailPage({
         </div>
       </div>
 
-      <div className="rounded-xl border border-brand-ink/10 bg-white p-4">
+      <div className="rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm">
         <h2 className="mb-3 font-semibold text-brand-ink">Items</h2>
         <ul className="flex flex-col gap-2 border-b border-brand-ink/10 pb-3">
           {order.items.map((item) => (

@@ -38,7 +38,7 @@ export default function OrderStatusControls({
         <span className="text-sm font-medium text-brand-ink/80">Order Status</span>
         <select
           disabled={updating}
-          className="rounded-lg border border-brand-ink/20 p-2"
+          className="rounded-lg border border-brand-ink/15 p-2 text-sm focus:border-brand-blue focus:outline-none"
           value={status}
           onChange={(e) => updateOrder({ status: e.target.value })}
         >
@@ -51,12 +51,13 @@ export default function OrderStatusControls({
       </label>
 
       {paymentMethod === "BANK_TRANSFER" && (
-        <label className="flex items-center gap-2">
+        <label className="flex items-center gap-2 rounded-lg bg-brand-ink/5 p-2.5">
           <input
             type="checkbox"
             disabled={updating}
             checked={paymentVerified}
             onChange={(e) => updateOrder({ paymentVerified: e.target.checked })}
+            className="h-4 w-4 accent-brand-blue"
           />
           <span className="text-sm font-medium text-brand-ink/80">
             Bank transfer payment verified/received
