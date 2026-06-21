@@ -124,11 +124,14 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
           // eslint-disable-next-line @next/next/no-img-element
           <img src={initial.imageUrl} alt={form.name} className="mb-2 h-24 w-24 rounded object-cover" />
         )}
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
-        />
+        <div className="field flex items-center">
+          <input
+            type="file"
+            accept="image/*"
+            className="w-full text-sm text-brand-ink/70 file:mr-3 file:rounded-full file:border-0 file:bg-brand-blue file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-brand-blue-dark"
+            onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
+          />
+        </div>
       </Field>
 
       {error && <p className="text-sm font-medium text-red-600">{error}</p>}
