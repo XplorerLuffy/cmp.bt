@@ -17,7 +17,7 @@ export default function AboutPage() {
             Our Story
           </p>
           <h1 className="font-display text-3xl font-medium text-brand-ink sm:text-4xl">
-            Made with patience, shared with pride.
+            Empowering women, supporting farmers, made in Bhutan.
           </h1>
         </FadeInSection>
       </div>
@@ -25,29 +25,25 @@ export default function AboutPage() {
       <FadeInSection className="mx-auto max-w-3xl px-4 py-12">
         <div className="flex flex-col gap-5 leading-relaxed text-brand-ink/80">
           <p>
-            Crystal Moon Products began in a small kitchen in Bhutan, where our founder
-            started making achaar using a family recipe passed down for generations. What
-            started as jars shared with neighbors and friends has grown into Crystal Moon
-            Products — a small business dedicated to bringing authentic, handmade Bhutanese
-            pickles to households across the country.
+            Crystal Moon Products (CMP) Women and Youth Group was established in 2015 in
+            Jigmeling, Sarpang, to create sustainable employment opportunities for
+            disadvantaged women and unemployed youth. The group produces organic,
+            value-added food products using locally sourced raw materials from farmers
+            across Bhutan.
           </p>
           <p>
-            Every jar is made in small batches, using fresh chilies, vegetables, and spices
-            sourced from local Bhutanese farmers. We don&apos;t use shortcuts or
-            mass-production — just time, care, and the same traditional methods used at home.
+            Currently employing seven women, CMP manufactures a range of products including
+            pickles, pastes (Ezzays), spices, soups, and fruit powders. By adding value to
+            local agricultural produce, the organization supports farmers, promotes local
+            products, and contributes to income generation and economic development.
           </p>
           <h2 className="mt-2 font-display text-xl font-medium text-brand-ink">
-            What Makes Our Pickles Special
+            Our Commitment
           </h2>
-          <ul className="list-inside list-disc space-y-2">
-            <li>Made by hand in small batches, never mass-produced</li>
-            <li>Fresh, locally sourced Bhutanese ingredients</li>
-            <li>Traditional family recipes with no artificial preservatives</li>
-            <li>A range of flavors — from fiery ezay to tangy seasonal achaar</li>
-          </ul>
           <p>
-            We&apos;re proud to be a Bhutanese business serving Bhutanese households, one
-            jar at a time. Thank you for supporting local.
+            With a growing distribution network across Bhutan, CMP is committed to
+            delivering high-quality, affordable products while empowering women and youth
+            through entrepreneurship and skill development.
           </p>
         </div>
       </FadeInSection>
