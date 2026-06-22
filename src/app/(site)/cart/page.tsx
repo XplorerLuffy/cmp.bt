@@ -53,8 +53,8 @@ export default function CartPage() {
                 <div className="flex h-full items-center justify-center text-2xl">🫙</div>
               )}
             </div>
-            <div className="min-w-[8rem] flex-1 basis-full sm:basis-auto">
-              <Link href={`/products/${item.slug}`} className="font-medium text-brand-ink hover:text-brand-blue">
+            <div className="min-w-0 flex-1 basis-full sm:basis-auto">
+              <Link href={`/products/${item.slug}`} className="break-words font-medium text-brand-ink hover:text-brand-blue">
                 {item.name}
               </Link>
               <p className="text-sm text-brand-ink/60">{formatBTN(item.price)} each</p>

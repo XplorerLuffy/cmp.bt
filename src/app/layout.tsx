@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: "Crystal Moon Products | Handmade Bhutanese Achaar",
   description:
     "Crystal Moon Products makes handmade Bhutanese pickles (achaar) using traditional recipes and quality ingredients, delivered across Bhutan.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
