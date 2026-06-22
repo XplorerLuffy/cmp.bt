@@ -20,7 +20,12 @@ export default function ProductRowActions({
     try {
       const formData = new FormData();
       formData.set(field, String(value));
-      await fetch(`/api/products/${productId}`, { method: "PATCH", body: formData });
+      const res = await fetch(`/api/products/${productId}`, { method: "PATCH", body: formData });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Could not update product");
+        return;
+      }
       router.refresh();
     } finally {
       setBusy(false);
@@ -31,7 +36,12 @@ export default function ProductRowActions({
     if (!confirm("Delete this product? If it has order history it will be deactivated instead.")) return;
     setBusy(true);
     try {
-      await fetch(`/api/products/${productId}`, { method: "DELETE" });
+      const res = await fetch(`/api/products/${productId}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Could not delete product");
+        return;
+      }
       router.refresh();
     } finally {
       setBusy(false);

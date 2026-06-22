@@ -55,6 +55,9 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
+  const product = await prisma.product.findUnique({ where: { id } });
+  if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
+
   const hasOrders = await prisma.orderItem.findFirst({ where: { productId: id } });
 
   if (hasOrders) {
@@ -63,8 +66,10 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
     return NextResponse.json({ deactivated: true, product: updated });
   }
 
-  const product = await prisma.product.findUnique({ where: { id } });
-  if (product?.imageUrl) await deleteProductImage(product.imageUrl).catch(() => {});
-  await prisma.product.delete({ where: { id } });
+  if (product.imageUrl) await deleteProductImage(product.imageUrl).catch(() => {});
+  await prisma.product.delete({ where: { id } }).catch((err) => {
+    if (err?.code === "P2025") return; // already deleted (e.g. duplicate request)
+    throw err;
+  });
   return NextResponse.json({ deleted: true });
 }
