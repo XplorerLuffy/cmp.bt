@@ -129,6 +129,7 @@ function ProductThumb({ imageUrl, name, size }: { imageUrl: string | null; name:
       alt={name}
       width={size}
       height={size}
+      unoptimized
       className="shrink-0 rounded-lg object-cover"
       style={{ width: size, height: size }}
     />

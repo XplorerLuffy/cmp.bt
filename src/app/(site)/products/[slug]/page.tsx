@@ -26,7 +26,7 @@ export default async function ProductDetailPage({
       <FadeInSection className="grid gap-10 sm:grid-cols-2">
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-tint">
           {product.imageUrl ? (
-            <Image src={product.imageUrl} alt={product.name} fill className="object-cover" />
+            <Image src={product.imageUrl} alt={product.name} fill unoptimized className="object-cover" />
           ) : (
             <div className="flex h-full items-center justify-center text-6xl">🫙</div>
           )}
