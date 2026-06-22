@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ORDER_STATUS_LABELS } from "@/lib/orders";
+import { getStatusSelectStyle } from "@/components/admin/StatusBadge";
 
 export default function OrderStatusControls({
   orderId,
@@ -38,7 +39,9 @@ export default function OrderStatusControls({
         <span className="text-sm font-medium text-brand-ink/80">Order Status</span>
         <select
           disabled={updating}
-          className="rounded-lg border border-brand-ink/15 p-2 text-sm focus:border-brand-blue focus:outline-none"
+          className={`rounded-lg border p-2 text-sm font-medium focus:border-brand-blue focus:outline-none disabled:opacity-60 ${getStatusSelectStyle(
+            status
+          )}`}
           value={status}
           onChange={(e) => updateOrder({ status: e.target.value })}
         >

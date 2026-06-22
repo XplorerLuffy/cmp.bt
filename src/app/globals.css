@@ -17,6 +17,9 @@
   --accent-amber-tint: #fef3c7;
   --accent-rose: #e11d48;
   --accent-rose-tint: #ffe4e6;
+
+  --admin-sidebar: #0a0f1c;
+  --admin-sidebar-light: #131b2e;
 }
 
 @theme inline {
@@ -34,6 +37,8 @@
   --color-accent-amber-tint: var(--accent-amber-tint);
   --color-accent-rose: var(--accent-rose);
   --color-accent-rose-tint: var(--accent-rose-tint);
+  --color-admin-sidebar: var(--admin-sidebar);
+  --color-admin-sidebar-light: var(--admin-sidebar-light);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }

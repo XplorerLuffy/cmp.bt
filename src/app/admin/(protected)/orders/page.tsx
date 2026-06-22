@@ -2,7 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { formatBTN } from "@/lib/format";
 import { ORDER_STATUS_LABELS } from "@/lib/orders";
-import StatusBadge from "@/components/admin/StatusBadge";
+import InlineStatusSelect from "@/components/admin/InlineStatusSelect";
 import type { OrderStatus } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -46,13 +46,14 @@ export default async function AdminOrdersPage({
       {/* Mobile: stacked cards */}
       <div className="flex flex-col gap-3 sm:hidden">
         {orders.map((order) => (
-          <Link
+          <div
             key={order.id}
-            href={`/admin/orders/${order.id}`}
             className="block rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm"
           >
             <div className="mb-1 flex items-center justify-between">
-              <span className="font-medium text-brand-blue">{order.orderNumber}</span>
+              <Link href={`/admin/orders/${order.id}`} className="font-medium text-brand-blue hover:underline">
+                {order.orderNumber}
+              </Link>
               <span className="font-semibold text-brand-ink">{formatBTN(order.subtotal)}</span>
             </div>
             <p className="text-sm text-brand-ink/80">{order.customerName}</p>
@@ -61,9 +62,9 @@ export default async function AdminOrdersPage({
               <span>{order.createdAt.toLocaleDateString()}</span>
             </div>
             <div className="mt-2">
-              <StatusBadge status={order.status} />
+              <InlineStatusSelect orderId={order.id} status={order.status} />
             </div>
-          </Link>
+          </div>
         ))}
         {orders.length === 0 && (
           <p className="rounded-xl border border-brand-ink/10 bg-white p-6 text-center text-brand-ink/50 shadow-sm">
@@ -97,7 +98,7 @@ export default async function AdminOrdersPage({
                 <td className="p-3">{order.paymentMethod === "COD" ? "COD" : "Bank Transfer"}</td>
                 <td className="p-3">{formatBTN(order.subtotal)}</td>
                 <td className="p-3">
-                  <StatusBadge status={order.status} />
+                  <InlineStatusSelect orderId={order.id} status={order.status} />
                 </td>
                 <td className="p-3 text-brand-ink/60">{order.createdAt.toLocaleDateString()}</td>
               </tr>
