@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { formatBTN } from "@/lib/format";
 
@@ -30,12 +29,11 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
       >
         <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-brand-blue-light/20 to-brand-tint">
           {product.imageUrl ? (
-            <Image
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               src={product.imageUrl}
               alt={product.name}
-              fill
-              unoptimized
-              className="object-cover transition duration-500 group-hover:scale-110"
+              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-5xl">🫙</div>

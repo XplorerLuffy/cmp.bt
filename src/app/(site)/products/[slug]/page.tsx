@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -26,7 +25,8 @@ export default async function ProductDetailPage({
       <FadeInSection className="grid gap-10 sm:grid-cols-2">
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-tint">
           {product.imageUrl ? (
-            <Image src={product.imageUrl} alt={product.name} fill unoptimized className="object-cover" />
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={product.imageUrl} alt={product.name} className="absolute inset-0 h-full w-full object-cover" />
           ) : (
             <div className="flex h-full items-center justify-center text-6xl">🫙</div>
           )}

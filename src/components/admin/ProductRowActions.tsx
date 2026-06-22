@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ProductRowActions({
   productId,
@@ -50,6 +51,12 @@ export default function ProductRowActions({
 
   return (
     <div className="flex flex-wrap gap-2 text-xs">
+      <Link
+        href={`/admin/products/${productId}/edit`}
+        className="rounded border border-brand-blue/30 px-2.5 py-1.5 font-medium text-brand-blue hover:bg-brand-blue/5"
+      >
+        Edit
+      </Link>
       <button
         disabled={busy}
         onClick={() => toggle("outOfStock", !outOfStock)}
