@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { proxyImageUrl } from "@/lib/image";
 
 export type ProductFormInitial = {
   id?: string;
@@ -125,7 +126,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
       <Field label={isEdit ? "Replace Image (optional)" : "Product Image"}>
         {initial?.imageUrl && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={initial.imageUrl} alt={form.name} className="mb-2 h-24 w-24 rounded object-cover" />
+          <img src={proxyImageUrl(initial.imageUrl) ?? undefined} alt={form.name} className="mb-2 h-24 w-24 rounded object-cover" />
         )}
         <div className="field flex items-center">
           <input

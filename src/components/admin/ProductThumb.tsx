@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { proxyImageUrl } from "@/lib/image";
 
 export default function ProductThumb({
   imageUrl,
@@ -27,9 +28,8 @@ export default function ProductThumb({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={imageUrl}
+      src={proxyImageUrl(imageUrl) ?? undefined}
       alt={name}
-      referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
       className="shrink-0 rounded-lg object-cover"
       style={{ width: size, height: size }}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { formatBTN } from "@/lib/format";
+import { proxyImageUrl } from "@/lib/image";
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, subtotal } = useCart();
@@ -48,7 +49,7 @@ export default function CartPage() {
             <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-brand-blue/10 to-brand-tint">
               {item.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={item.imageUrl} alt={item.name} className="absolute inset-0 h-full w-full object-cover" />
+                <img src={proxyImageUrl(item.imageUrl) ?? undefined} alt={item.name} className="absolute inset-0 h-full w-full object-cover" />
               ) : (
                 <div className="flex h-full items-center justify-center text-2xl">🫙</div>
               )}

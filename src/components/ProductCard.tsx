@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { formatBTN } from "@/lib/format";
+import { proxyImageUrl } from "@/lib/image";
 
 export type ProductCardData = {
   id: string;
@@ -31,7 +32,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
           {product.imageUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={product.imageUrl}
+              src={proxyImageUrl(product.imageUrl) ?? undefined}
               alt={product.name}
               className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"
             />

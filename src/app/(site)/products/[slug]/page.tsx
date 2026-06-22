@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatBTN } from "@/lib/format";
+import { proxyImageUrl } from "@/lib/image";
 import AddToCartForm from "@/components/AddToCartForm";
 import FadeInSection from "@/components/FadeInSection";
 
@@ -26,7 +27,7 @@ export default async function ProductDetailPage({
         <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-tint">
           {product.imageUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={product.imageUrl} alt={product.name} className="absolute inset-0 h-full w-full object-cover" />
+            <img src={proxyImageUrl(product.imageUrl) ?? undefined} alt={product.name} className="absolute inset-0 h-full w-full object-cover" />
           ) : (
             <div className="flex h-full items-center justify-center text-6xl">🫙</div>
           )}

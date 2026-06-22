@@ -40,3 +40,8 @@ export async function deleteProductImage(imageUrl: string): Promise<void> {
   const supabase = getSupabaseAdmin();
   await supabase.storage.from(BUCKET).remove([fileName]);
 }
+
+export async function downloadProductImage(fileName: string) {
+  const supabase = getSupabaseAdmin();
+  return supabase.storage.from(BUCKET).download(fileName);
+}
