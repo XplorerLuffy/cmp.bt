@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { proxyImageUrl } from "@/lib/image";
 
 export default function ProductThumb({
@@ -26,10 +27,11 @@ export default function ProductThumb({
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={proxyImageUrl(imageUrl) ?? undefined}
+    <Image
+      src={proxyImageUrl(imageUrl) ?? ""}
       alt={name}
+      width={size}
+      height={size}
       onError={() => setFailed(true)}
       className="shrink-0 rounded-lg object-cover"
       style={{ width: size, height: size }}
