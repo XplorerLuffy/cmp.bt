@@ -37,15 +37,42 @@ export async function GET(request: Request) {
     sharpError = String(e);
   }
 
+  // Also fetch the raw public URL directly (bypassing supabase-js download)
+  // to tell whether corruption is at upload (storage bad) or download (path bad).
+  const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
+  let publicFirst16Hex: string | null = null;
+  let publicByteLength: number | null = null;
+  let publicLooksLikeJpeg: boolean | null = null;
+  let publicError: string | null = null;
+  try {
+    const r = await fetch(publicUrl);
+    const pab = new Uint8Array(await r.arrayBuffer());
+    publicByteLength = pab.length;
+    publicFirst16Hex = Array.from(pab.slice(0, 16))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join(" ");
+    publicLooksLikeJpeg = pab[0] === 0xff && pab[1] === 0xd8;
+  } catch (e) {
+    publicError = String(e);
+  }
+
   return NextResponse.json({
     fileName,
-    blobType: data.type,
-    blobSize: data.size,
-    byteLength: bytes.length,
-    first16Hex: hex(16),
-    last4Hex: tailHex,
-    looksLikeJpeg: bytes[0] === 0xff && bytes[1] === 0xd8,
-    sharpMeta: meta,
-    sharpError,
+    download: {
+      blobType: data.type,
+      blobSize: data.size,
+      byteLength: bytes.length,
+      first16Hex: hex(16),
+      last4Hex: tailHex,
+      looksLikeJpeg: bytes[0] === 0xff && bytes[1] === 0xd8,
+      sharpMeta: meta,
+      sharpError,
+    },
+    publicUrl: {
+      byteLength: publicByteLength,
+      first16Hex: publicFirst16Hex,
+      looksLikeJpeg: publicLooksLikeJpeg,
+      error: publicError,
+    },
   });
 }
