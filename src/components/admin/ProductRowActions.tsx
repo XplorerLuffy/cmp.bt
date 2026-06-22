@@ -15,6 +15,7 @@ export default function ProductRowActions({
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   async function toggle(field: "isActive" | "outOfStock", value: boolean) {
     setBusy(true);
@@ -34,7 +35,11 @@ export default function ProductRowActions({
   }
 
   async function handleDelete() {
-    if (!confirm("Delete this product? If it has order history it will be deactivated instead.")) return;
+    if (!confirmingDelete) {
+      setConfirmingDelete(true);
+      return;
+    }
+    setConfirmingDelete(false);
     setBusy(true);
     try {
       const res = await fetch(`/api/products/${productId}`, { method: "DELETE" });
@@ -72,12 +77,23 @@ export default function ProductRowActions({
         {isActive ? "Deactivate" : "Activate"}
       </button>
       <button
+        type="button"
         disabled={busy}
         onClick={handleDelete}
         className="rounded border border-red-300 px-2.5 py-1.5 text-red-600 hover:bg-red-50"
       >
-        Delete
+        {confirmingDelete ? "Confirm Delete?" : "Delete"}
       </button>
+      {confirmingDelete && (
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => setConfirmingDelete(false)}
+          className="rounded border border-brand-ink/20 px-2.5 py-1.5 hover:bg-brand-ink/5"
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }
