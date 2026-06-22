@@ -12,12 +12,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
     return NextResponse.json({ error: "Image not found" }, { status: 404 });
   }
 
-  const buffer = Buffer.from(await data.arrayBuffer());
+  const buffer = new Uint8Array(await data.arrayBuffer());
 
   return new NextResponse(buffer, {
     headers: {
       "Content-Type": "image/jpeg",
-      "Content-Length": String(buffer.length),
       "Cache-Control": "public, max-age=31536000, immutable",
     },
   });
