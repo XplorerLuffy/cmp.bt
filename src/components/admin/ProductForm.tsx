@@ -131,6 +131,7 @@ export default function ProductForm({ initial }: { initial?: ProductFormInitial 
             alt={form.name}
             width={96}
             height={96}
+            unoptimized
             className="mb-2 h-24 w-24 rounded object-cover"
           />
         )}

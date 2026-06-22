@@ -32,6 +32,7 @@ export default function ProductThumb({
       alt={name}
       width={size}
       height={size}
+      unoptimized
       onError={() => setFailed(true)}
       className="shrink-0 rounded-lg object-cover"
       style={{ width: size, height: size }}
