@@ -10,7 +10,7 @@ export default async function HomePage() {
   const featured = await prisma.product.findMany({
     where: { isActive: true },
     orderBy: { createdAt: "desc" },
-    take: 4,
+    take: 8,
   });
 
   return (
