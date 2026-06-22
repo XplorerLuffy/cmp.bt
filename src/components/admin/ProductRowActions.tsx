@@ -43,10 +43,13 @@ export default function ProductRowActions({
     setBusy(true);
     try {
       const res = await fetch(`/api/products/${productId}`, { method: "DELETE" });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         alert(data.error || "Could not delete product");
         return;
+      }
+      if (data.deactivated) {
+        alert("This product has existing orders, so it was deactivated instead of deleted to preserve order history.");
       }
       router.refresh();
     } finally {
