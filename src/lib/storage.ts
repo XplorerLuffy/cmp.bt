@@ -24,7 +24,11 @@ export async function uploadProductImage(file: File): Promise<string> {
   const fileName = `${randomUUID()}.jpg`;
   const supabase = getSupabaseAdmin();
 
-  const { error } = await supabase.storage.from(BUCKET).upload(fileName, optimized, {
+  // Wrap the bytes in a Blob. Passing a raw Node Buffer here makes storage-js
+  // coerce the body through a UTF-8 string conversion, replacing every
+  // non-ASCII byte with U+FFFD and corrupting the stored JPEG.
+  const blob = new Blob([optimized], { type: "image/jpeg" });
+  const { error } = await supabase.storage.from(BUCKET).upload(fileName, blob, {
     contentType: "image/jpeg",
     upsert: false,
   });
