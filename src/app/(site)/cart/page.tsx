@@ -48,7 +48,7 @@ export default function CartPage() {
           >
             <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-brand-blue/10 to-brand-tint">
               {item.imageUrl ? (
-                <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+                <Image src={item.imageUrl} alt={item.name} fill unoptimized className="object-cover" />
               ) : (
                 <div className="flex h-full items-center justify-center text-2xl">🫙</div>
               )}
