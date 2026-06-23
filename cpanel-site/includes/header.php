@@ -77,7 +77,7 @@ $currentPath = $current === 'index.php' ? '/' : '/' . preg_replace('/\.php$/', '
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
       <a href="/" class="flex items-center gap-2.5">
         <img src="/logo.png" alt="Crystal Moon Products logo" class="h-9 w-9 rounded-full object-contain sm:h-10 sm:w-10">
-        <span class="font-display text-lg font-semibold tracking-wide text-brand-ink">Crystal Moon</span>
+        <span class="font-display text-lg font-semibold tracking-wide text-brand-ink">Crystal Moon Products</span>
       </a>
 
       <nav class="hidden items-center gap-8 md:flex">

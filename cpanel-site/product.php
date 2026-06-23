@@ -71,6 +71,7 @@ require __DIR__ . '/includes/header.php';
           </form>
         </div>
         <p class="text-sm text-brand-ink/55">Cash on delivery or bank transfer — delivered anywhere in Bhutan.</p>
+        <p class="text-sm text-brand-ink/55">Buying in bulk? <a href="/contact" class="font-medium text-brand-blue hover:underline">Contact us</a> for wholesale pricing.</p>
         <script>
           (function () {
             var input = document.getElementById('qtyInput');

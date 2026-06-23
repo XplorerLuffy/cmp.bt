@@ -81,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ingredients = trim($_POST['ingredients'] ?? '');
     $category    = trim($_POST['category'] ?? '');
     $price       = (int)($_POST['price'] ?? 0);
+    $wholesalePrice = trim($_POST['wholesale_price'] ?? '') !== '' ? (int)$_POST['wholesale_price'] : null;
     $stock       = (int)($_POST['stock'] ?? 0);
     $isActive    = isset($_POST['is_active']) ? 1 : 0;
     $outOfStock  = isset($_POST['out_of_stock']) ? 1 : 0;
@@ -95,11 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Update
             $slug = unique_slug($db, slugify($name), $id);
             if ($imagePath) {
-                $stmt = $db->prepare("UPDATE products SET name=?, slug=?, description=?, ingredients=?, category=?, price=?, stock=?, is_active=?, out_of_stock=?, image_url=? WHERE id=?");
-                $stmt->bind_param('sssssiiiiss', $name, $slug, $description, $ingredientsVal, $category, $price, $stock, $isActive, $outOfStock, $imagePath, $id);
+                $stmt = $db->prepare("UPDATE products SET name=?, slug=?, description=?, ingredients=?, category=?, price=?, wholesale_price=?, stock=?, is_active=?, out_of_stock=?, image_url=? WHERE id=?");
+                $stmt->bind_param('sssssiiiiiss', $name, $slug, $description, $ingredientsVal, $category, $price, $wholesalePrice, $stock, $isActive, $outOfStock, $imagePath, $id);
             } else {
-                $stmt = $db->prepare("UPDATE products SET name=?, slug=?, description=?, ingredients=?, category=?, price=?, stock=?, is_active=?, out_of_stock=? WHERE id=?");
-                $stmt->bind_param('sssssiiiis', $name, $slug, $description, $ingredientsVal, $category, $price, $stock, $isActive, $outOfStock, $id);
+                $stmt = $db->prepare("UPDATE products SET name=?, slug=?, description=?, ingredients=?, category=?, price=?, wholesale_price=?, stock=?, is_active=?, out_of_stock=? WHERE id=?");
+                $stmt->bind_param('sssssiiiiis', $name, $slug, $description, $ingredientsVal, $category, $price, $wholesalePrice, $stock, $isActive, $outOfStock, $id);
             }
             $stmt->execute();
             redirect('/cmp/products');
@@ -107,8 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Create
             $newId = gen_id();
             $slug = unique_slug($db, slugify($name), null);
-            $stmt = $db->prepare("INSERT INTO products (id, slug, name, description, ingredients, category, price, image_url, stock, is_active, out_of_stock) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param('ssssssisiii', $newId, $slug, $name, $description, $ingredientsVal, $category, $price, $imagePath, $stock, $isActive, $outOfStock);
+            $stmt = $db->prepare("INSERT INTO products (id, slug, name, description, ingredients, category, price, wholesale_price, image_url, stock, is_active, out_of_stock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param('ssssssiisiii', $newId, $slug, $name, $description, $ingredientsVal, $category, $price, $wholesalePrice, $imagePath, $stock, $isActive, $outOfStock);
             $stmt->execute();
             redirect('/cmp/products');
         }
@@ -147,8 +148,13 @@ require __DIR__ . '/../includes/admin-layout.php';
     <textarea name="ingredients" rows="2" class="rounded-lg border border-brand-ink/15 p-2.5"><?= $v('ingredients') ?></textarea></label>
 
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-    <label class="flex flex-col gap-1"><span class="text-sm font-medium text-brand-ink/80">Price (Nu.)</span>
+    <label class="flex flex-col gap-1"><span class="text-sm font-medium text-brand-ink/80">Retail Price (Nu.)</span>
       <input name="price" type="number" min="1" required value="<?= $v('price') ?>" class="rounded-lg border border-brand-ink/15 p-2.5"></label>
+    <label class="flex flex-col gap-1"><span class="text-sm font-medium text-brand-ink/80">Wholesale Price (Nu., optional)</span>
+      <input name="wholesale_price" type="number" min="0" value="<?= $v('wholesale_price') ?>" class="rounded-lg border border-brand-ink/15 p-2.5">
+      <span class="text-xs text-brand-ink/50">For your reference only — never shown on the public site.</span></label>
+  </div>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <label class="flex flex-col gap-1"><span class="text-sm font-medium text-brand-ink/80">Stock Quantity</span>
       <input name="stock" type="number" min="0" required value="<?= $isEdit ? $v('stock') : '100' ?>" class="rounded-lg border border-brand-ink/15 p-2.5"></label>
   </div>

@@ -56,6 +56,10 @@ require __DIR__ . '/includes/header.php';
     <?php endforeach; ?>
   </div>
 
+  <p class="mb-8 rounded-xl border border-brand-blue/20 bg-brand-blue/5 p-4 text-sm text-brand-ink/75">
+    <strong class="font-semibold text-brand-ink">Buying in bulk?</strong> Mention it in your message below for wholesale pricing — we'll get back to you with rates.
+  </p>
+
   <?php if ($sent): ?>
     <p class="rounded-xl bg-green-50 p-4 font-medium text-green-700">Thanks for reaching out! We&apos;ll get back to you soon.</p>
   <?php else: ?>

@@ -30,8 +30,10 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
    It adds the `stock` column and creates the `orders`, `order_items`, and
    `admins` tables. (First-time setup also needs `migrate.sql` from before.)
    Then run **`migrate3.sql`** to add the `settings` table that powers the
-   editable About & Contact pages, and **`migrate4.sql`** to seed default
-   homepage text for `/cmp/home`.
+   editable About & Contact pages, **`migrate4.sql`** to seed default
+   homepage text for `/cmp/home`, and **`migrate5.sql`** to add a
+   wholesale-price field to products (admin-only, never shown publicly —
+   the storefront just points bulk buyers to Contact).
 2. **Upload everything** to `public_html` (turn on "Show Hidden Files" so
    `.htaccess` and `uploads/.htaccess` upload). **Keep your existing
    `config.php`** with your DB credentials, or re-enter them after extracting:

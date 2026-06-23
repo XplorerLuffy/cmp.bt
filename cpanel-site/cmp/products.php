@@ -33,6 +33,7 @@ require __DIR__ . '/../includes/admin-layout.php';
             <a href="/cmp/product-edit?id=<?= urlencode($p['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($p['name']) ?></a>
             <p class="text-sm text-brand-ink/60"><?= htmlspecialchars($p['category']) ?></p>
             <p class="font-semibold text-brand-ink"><?= format_btn((float)$p['price']) ?></p>
+            <?php if (!empty($p['wholesale_price'])): ?><p class="text-xs text-brand-ink/50">Wholesale: <?= format_btn((float)$p['wholesale_price']) ?></p><?php endif; ?>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
