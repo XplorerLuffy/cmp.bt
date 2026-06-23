@@ -2,10 +2,7 @@
 require __DIR__ . '/config.php';
 
 $slug = $_GET['slug'] ?? '';
-if ($slug === '') {
-    header('Location: /products.php');
-    exit;
-}
+if ($slug === '') { header('Location: /products.php'); exit; }
 
 $db = get_db();
 $stmt = $db->prepare("SELECT * FROM products WHERE slug = ? AND is_active = 1 LIMIT 1");
@@ -17,7 +14,7 @@ if (!$product) {
     http_response_code(404);
     $pageTitle = 'Not Found';
     require __DIR__ . '/includes/header.php';
-    echo '<section class="mx-auto max-w-3xl px-4 py-20 text-center"><h1 class="text-2xl font-semibold">Product not found</h1><a href="/products.php" class="mt-4 inline-block text-brand-blue hover:underline">Back to products</a></section>';
+    echo '<section class="mx-auto max-w-3xl px-4 py-24 text-center"><h1 class="font-display text-2xl font-medium">Product not found</h1><a href="/products.php" class="mt-4 inline-block text-brand-blue hover:underline">&larr; Back to Shop</a></section>';
     require __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -26,32 +23,45 @@ $pageTitle = $product['name'];
 require __DIR__ . '/includes/header.php';
 ?>
 
-<section class="mx-auto max-w-5xl px-4 py-14">
-  <a href="/products.php" class="text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to products</a>
+<div class="mx-auto max-w-5xl px-4 py-10">
+  <a href="/products.php" class="mb-6 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Shop</a>
 
-  <div class="mt-6 grid grid-cols-1 gap-10 sm:grid-cols-2">
-    <div class="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue-light/20 to-brand-tint">
+  <div class="reveal grid gap-10 sm:grid-cols-2">
+    <div class="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-tint">
       <?php if (!empty($product['image_url'])): ?>
-        <img src="<?= htmlspecialchars($product['image_url']) ?>"
-             alt="<?= htmlspecialchars($product['name']) ?>"
-             class="h-full w-full object-cover">
+        <img src="<?= htmlspecialchars($product['image_url']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="h-full w-full object-cover">
       <?php else: ?>
         <div class="flex h-full items-center justify-center text-6xl">🫙</div>
       <?php endif; ?>
     </div>
 
-    <div>
-      <h1 class="text-3xl font-bold"><?= htmlspecialchars($product['name']) ?></h1>
-      <p class="mt-3 text-brand-ink/70"><?= htmlspecialchars($product['description']) ?></p>
-      <p class="mt-4 text-2xl font-bold text-brand-blue"><?= format_btn((float)$product['price']) ?></p>
+    <div class="flex flex-col gap-5">
+      <div>
+        <?php if (!empty($product['category'])): ?>
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue"><?= htmlspecialchars($product['category']) ?></p>
+        <?php endif; ?>
+        <h1 class="font-display text-3xl font-medium text-brand-ink"><?= htmlspecialchars($product['name']) ?></h1>
+        <p class="mt-2 font-display text-2xl font-bold text-brand-blue"><?= format_btn((float)$product['price']) ?></p>
+      </div>
+
+      <p class="leading-relaxed text-brand-ink/80"><?= htmlspecialchars($product['description']) ?></p>
+
+      <?php if (!empty($product['ingredients'])): ?>
+        <div class="rounded-xl border border-brand-ink/10 bg-white p-4">
+          <h2 class="mb-1 font-display font-semibold text-brand-ink">Ingredients</h2>
+          <p class="text-sm text-brand-ink/70"><?= htmlspecialchars($product['ingredients']) ?></p>
+        </div>
+      <?php endif; ?>
 
       <?php if ($product['out_of_stock']): ?>
-        <p class="mt-6 inline-block rounded-full bg-brand-ink px-4 py-2 text-sm font-semibold text-white">Out of Stock</p>
+        <span class="inline-block rounded-full bg-brand-ink px-5 py-3 text-center text-sm font-semibold text-white">Out of Stock</span>
       <?php else: ?>
-        <p class="mt-6 text-sm text-brand-ink/60">To order, contact us directly — cash on delivery or bank transfer, anywhere in Bhutan.</p>
+        <div class="rounded-xl border border-brand-blue/20 bg-brand-blue/5 p-4">
+          <p class="text-sm text-brand-ink/75">To order, <a href="/contact.php" class="font-semibold text-brand-blue hover:underline">contact us</a> — cash on delivery or bank transfer, anywhere in Bhutan.</p>
+        </div>
       <?php endif; ?>
     </div>
   </div>
-</section>
+</div>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
