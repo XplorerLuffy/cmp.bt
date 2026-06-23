@@ -1,6 +1,13 @@
 Options -Indexes
 RewriteEngine On
 
+# Raise upload limits so product image uploads aren't silently rejected
+# by a low shared-hosting default (only takes effect where mod_php is used).
+<IfModule mod_php.c>
+  php_value upload_max_filesize 8M
+  php_value post_max_size 10M
+</IfModule>
+
 # Force HTTPS + www (optional, keeps URLs canonical)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -26,18 +26,37 @@ function unique_slug(mysqli $db, string $base, ?string $excludeId): string {
     }
 }
 
+$uploadError = '';
+
 function handle_upload(): ?string {
-    if (empty($_FILES['image']['name']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) return null;
+    global $uploadError;
+    if (empty($_FILES['image']['name'])) return null; // no file chosen, keep existing image
+    if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        $uploadError = match ($_FILES['image']['error']) {
+            UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'Image is too large for this server\'s upload limit.',
+            default => 'Image upload failed (error code ' . $_FILES['image']['error'] . ').',
+        };
+        return null;
+    }
     $allowed = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif'];
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mime = finfo_file($finfo, $_FILES['image']['tmp_name']);
     finfo_close($finfo);
-    if (!isset($allowed[$mime])) return null;
-    if ($_FILES['image']['size'] > 5 * 1024 * 1024) return null; // 5MB cap
+    if (!isset($allowed[$mime])) {
+        $uploadError = 'Unsupported image type. Use JPG, PNG, WEBP, or GIF.';
+        return null;
+    }
+    if ($_FILES['image']['size'] > 5 * 1024 * 1024) {
+        $uploadError = 'Image is larger than the 5MB limit.';
+        return null;
+    }
     $dir = __DIR__ . '/../uploads';
     if (!is_dir($dir)) @mkdir($dir, 0755, true);
     $name = bin2hex(random_bytes(12)) . '.' . $allowed[$mime];
-    if (!move_uploaded_file($_FILES['image']['tmp_name'], "$dir/$name")) return null;
+    if (!move_uploaded_file($_FILES['image']['tmp_name'], "$dir/$name")) {
+        $uploadError = 'Could not save the image — check that the uploads/ folder is writable.';
+        return null;
+    }
     return '/uploads/' . $name;
 }
 
@@ -69,8 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($name === '' || $description === '' || $category === '' || $price < 1) {
         $error = 'Please fill in name, description, category and a valid price.';
+    } elseif (($imagePath = handle_upload()) === null && $uploadError !== '') {
+        $error = $uploadError;
     } else {
-        $imagePath = handle_upload();
         if ($id !== '') {
             // Update
             $slug = unique_slug($db, slugify($name), $id);
