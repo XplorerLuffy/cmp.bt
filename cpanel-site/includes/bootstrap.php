@@ -8,6 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/../config.php';   // DB credentials + get_db() + format_btn()
 require_once __DIR__ . '/cart.php';        // session cart helpers
+require_once __DIR__ . '/settings.php';    // editable site content (about/contact)
 
 // Small unique id generator (cuid-ish) for orders.
 function gen_id(): string {

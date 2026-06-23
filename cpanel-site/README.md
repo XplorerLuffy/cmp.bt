@@ -20,12 +20,16 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
 - `/admin/products` — list / add / edit / delete products (with image upload)
 - `/admin/orders` — view & update order statuses
 - `/admin/order?id=...` — order detail
+- `/admin/about` — edit the About page text + upload its image
+- `/admin/contact` — edit phone / email / location (shown on Contact + footer)
 
 ## Deploy
 
 1. **Run `migrate2.sql`** in phpMyAdmin (SQL tab, database `cmpbt_cmpbt`).
    It adds the `stock` column and creates the `orders`, `order_items`, and
    `admins` tables. (First-time setup also needs `migrate.sql` from before.)
+   Then run **`migrate3.sql`** to add the `settings` table that powers the
+   editable About & Contact pages.
 2. **Upload everything** to `public_html` (turn on "Show Hidden Files" so
    `.htaccess` and `uploads/.htaccess` upload). **Keep your existing
    `config.php`** with your DB credentials, or re-enter them after extracting:

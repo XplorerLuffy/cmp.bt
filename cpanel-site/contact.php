@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . '/includes/settings.php';
 $pageTitle = 'Contact';
 
 $sent = false;
@@ -42,7 +43,11 @@ require __DIR__ . '/includes/header.php';
 <div class="mx-auto max-w-3xl px-4 py-12">
   <div class="mb-10 grid gap-4 sm:grid-cols-3">
     <?php
-    $cards = [['📞', 'Phone', '+975 17 123 456'], ['✉️', 'Email', 'hello@cmp.bt'], ['📍', 'Location', 'Thimphu, Bhutan']];
+    $cards = [
+      ['📞', 'Phone', get_setting('contact_phone', '+975 17 123 456')],
+      ['✉️', 'Email', get_setting('contact_email', 'hello@cmp.bt')],
+      ['📍', 'Location', get_setting('contact_location', 'Thimphu, Bhutan')],
+    ];
     foreach ($cards as [$icon, $label, $value]): ?>
       <div class="rounded-xl border border-brand-ink/10 bg-white p-4 text-center">
         <div class="mb-1 text-2xl"><?= $icon ?></div>

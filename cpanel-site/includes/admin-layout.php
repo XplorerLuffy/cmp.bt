@@ -4,6 +4,8 @@ $nav = [
   ['/admin', 'Dashboard', '▦'],
   ['/admin/products', 'Products', '📦'],
   ['/admin/orders', 'Orders', '🧾'],
+  ['/admin/about', 'About Page', '📝'],
+  ['/admin/contact', 'Contact Info', '☎'],
 ];
 $here = $_SERVER['REQUEST_URI'];
 function admin_active($href, $here) {

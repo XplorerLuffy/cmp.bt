@@ -13,9 +13,9 @@
       <div>
         <h4 class="mb-3 font-display text-sm font-semibold uppercase tracking-wider text-brand-blue-light">Contact</h4>
         <ul class="space-y-1.5 text-sm">
-          <li>+975 17 123 456</li>
-          <li>hello@cmp.bt</li>
-          <li>Thimphu, Bhutan</li>
+          <li><?= htmlspecialchars(function_exists('get_setting') ? get_setting('contact_phone', '+975 17 123 456') : '+975 17 123 456') ?></li>
+          <li><?= htmlspecialchars(function_exists('get_setting') ? get_setting('contact_email', 'hello@cmp.bt') : 'hello@cmp.bt') ?></li>
+          <li><?= htmlspecialchars(function_exists('get_setting') ? get_setting('contact_location', 'Thimphu, Bhutan') : 'Thimphu, Bhutan') ?></li>
         </ul>
       </div>
       <div>
