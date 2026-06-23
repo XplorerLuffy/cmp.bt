@@ -3,7 +3,7 @@
     <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
       <div>
         <div class="mb-3 flex items-center gap-2.5 text-white">
-          <img src="/logo.png" alt="Crystal Moon Products logo" class="h-8 w-8 rounded-full object-contain">
+          <img src="/logo.png" alt="Crystal Moon Products logo" class="h-8 w-8 rounded-full object-contain" loading="lazy">
           <span class="font-display text-base font-semibold">Crystal Moon Products</span>
         </div>
         <p class="text-sm leading-relaxed">
@@ -21,9 +21,9 @@
       <div>
         <h4 class="mb-3 font-display text-sm font-semibold uppercase tracking-wider text-brand-blue-light">Quick Links</h4>
         <ul class="space-y-1.5 text-sm">
-          <li><a href="/products.php" class="hover:text-brand-blue-light">Shop</a></li>
-          <li><a href="/about.php" class="hover:text-brand-blue-light">About Us</a></li>
-          <li><a href="/contact.php" class="hover:text-brand-blue-light">Contact</a></li>
+          <li><a href="/products" class="hover:text-brand-blue-light">Shop</a></li>
+          <li><a href="/about" class="hover:text-brand-blue-light">About Us</a></li>
+          <li><a href="/contact" class="hover:text-brand-blue-light">Contact</a></li>
         </ul>
       </div>
     </div>

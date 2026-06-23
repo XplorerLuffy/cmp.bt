@@ -1,0 +1,21 @@
+Options -Indexes
+RewriteEngine On
+
+# Force HTTPS + www (optional, keeps URLs canonical)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect old .php URLs to clean URLs (301)
+RewriteCond %{THE_REQUEST} \s/+([^.\s?]+)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Pretty product URL: /product/the-slug  ->  product.php?slug=the-slug
+RewriteRule ^product/([A-Za-z0-9_-]+)/?$ product.php?slug=$1 [L,QSA]
+
+# Map extensionless URLs to their .php file
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# Friendly error page fallback (optional)
+ErrorDocument 404 /products.php

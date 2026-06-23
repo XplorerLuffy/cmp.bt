@@ -2,7 +2,7 @@
 require __DIR__ . '/config.php';
 
 $slug = $_GET['slug'] ?? '';
-if ($slug === '') { header('Location: /products.php'); exit; }
+if ($slug === '') { header('Location: /products'); exit; }
 
 $db = get_db();
 $stmt = $db->prepare("SELECT * FROM products WHERE slug = ? AND is_active = 1 LIMIT 1");
@@ -14,7 +14,7 @@ if (!$product) {
     http_response_code(404);
     $pageTitle = 'Not Found';
     require __DIR__ . '/includes/header.php';
-    echo '<section class="mx-auto max-w-3xl px-4 py-24 text-center"><h1 class="font-display text-2xl font-medium">Product not found</h1><a href="/products.php" class="mt-4 inline-block text-brand-blue hover:underline">&larr; Back to Shop</a></section>';
+    echo '<section class="mx-auto max-w-3xl px-4 py-24 text-center"><h1 class="font-display text-2xl font-medium">Product not found</h1><a href="/products" class="mt-4 inline-block text-brand-blue hover:underline">&larr; Back to Shop</a></section>';
     require __DIR__ . '/includes/footer.php';
     exit;
 }
@@ -24,7 +24,7 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <div class="mx-auto max-w-5xl px-4 py-10">
-  <a href="/products.php" class="mb-6 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Shop</a>
+  <a href="/products" class="mb-6 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Shop</a>
 
   <div class="reveal grid gap-10 sm:grid-cols-2">
     <div class="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-tint">
@@ -57,7 +57,7 @@ require __DIR__ . '/includes/header.php';
         <span class="inline-block rounded-full bg-brand-ink px-5 py-3 text-center text-sm font-semibold text-white">Out of Stock</span>
       <?php else: ?>
         <div class="rounded-xl border border-brand-blue/20 bg-brand-blue/5 p-4">
-          <p class="text-sm text-brand-ink/75">To order, <a href="/contact.php" class="font-semibold text-brand-blue hover:underline">contact us</a> — cash on delivery or bank transfer, anywhere in Bhutan.</p>
+          <p class="text-sm text-brand-ink/75">To order, <a href="/contact" class="font-semibold text-brand-blue hover:underline">contact us</a> — cash on delivery or bank transfer, anywhere in Bhutan.</p>
         </div>
       <?php endif; ?>
     </div>

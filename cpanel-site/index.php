@@ -24,8 +24,8 @@ require __DIR__ . '/includes/header.php';
       Small-batch Bhutanese pickles made with traditional family recipes, fresh local chilies, and a whole lot of patience.
     </p>
     <div class="reveal mt-2 flex flex-col gap-3 sm:flex-row" style="animation-delay:.4s">
-      <a href="/products.php" class="rounded-full bg-brand-blue px-7 py-3 font-display font-semibold text-white shadow-lg shadow-brand-blue/30 transition hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-xl">Shop Our Pickles</a>
-      <a href="/about.php" class="rounded-full border border-brand-ink/15 px-7 py-3 font-medium text-brand-ink transition hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue">Our Story</a>
+      <a href="/products" class="rounded-full bg-brand-blue px-7 py-3 font-display font-semibold text-white shadow-lg shadow-brand-blue/30 transition hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-xl">Shop Our Pickles</a>
+      <a href="/about" class="rounded-full border border-brand-ink/15 px-7 py-3 font-medium text-brand-ink transition hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue">Our Story</a>
     </div>
   </div>
 </section>
@@ -36,7 +36,7 @@ require __DIR__ . '/includes/header.php';
       <p class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-blue">Featured</p>
       <h2 class="font-display text-2xl font-medium text-brand-ink sm:text-3xl">From the Pantry</h2>
     </div>
-    <a href="/products.php" class="text-sm font-medium text-brand-ink/60 hover:text-brand-blue">View all &rarr;</a>
+    <a href="/products" class="text-sm font-medium text-brand-ink/60 hover:text-brand-blue">View all &rarr;</a>
   </div>
 
   <?php if (empty($featured)): ?>

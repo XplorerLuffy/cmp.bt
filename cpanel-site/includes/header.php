@@ -1,11 +1,13 @@
 <?php
 $navLinks = [
-  ['/index.php', 'Home'],
-  ['/products.php', 'Shop'],
-  ['/about.php', 'About'],
-  ['/contact.php', 'Contact'],
+  ['/', 'Home'],
+  ['/products', 'Shop'],
+  ['/about', 'About'],
+  ['/contact', 'Contact'],
 ];
 $current = basename($_SERVER['PHP_SELF']);
+// Normalise current script name to a clean path for active-link matching.
+$currentPath = $current === 'index.php' ? '/' : '/' . preg_replace('/\.php$/', '', $current);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -73,14 +75,14 @@ $current = basename($_SERVER['PHP_SELF']);
 <body class="flex min-h-full flex-col bg-background font-body text-brand-ink antialiased">
   <header class="glass sticky top-0 z-40">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-      <a href="/index.php" class="flex items-center gap-2.5">
+      <a href="/" class="flex items-center gap-2.5">
         <img src="/logo.png" alt="Crystal Moon Products logo" class="h-9 w-9 rounded-full object-contain sm:h-10 sm:w-10">
         <span class="font-display text-lg font-semibold tracking-wide text-brand-ink">Crystal Moon</span>
       </a>
 
       <nav class="hidden items-center gap-8 md:flex">
         <?php foreach ($navLinks as [$href, $label]): ?>
-          <a href="<?= $href ?>" class="group relative text-sm font-medium tracking-wide <?= $current === basename($href) ? 'text-brand-blue' : 'text-brand-ink/75' ?> transition hover:text-brand-blue">
+          <a href="<?= $href ?>" class="group relative text-sm font-medium tracking-wide <?= $currentPath === $href ? 'text-brand-blue' : 'text-brand-ink/75' ?> transition hover:text-brand-blue">
             <?= $label ?>
             <span class="absolute -bottom-1 left-0 h-px w-0 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
           </a>

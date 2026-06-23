@@ -3,7 +3,7 @@
 $delay = isset($cardIndex) ? ($cardIndex % 4) * 0.08 : 0;
 ?>
 <div class="reveal" style="animation-delay: <?= $delay ?>s">
-  <a href="/product.php?slug=<?= urlencode($product['slug']) ?>"
+  <a href="/product/<?= urlencode($product['slug']) ?>"
      class="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-blue/10">
     <div class="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-brand-blue-light/20 to-brand-tint">
       <?php if (!empty($product['image_url'])): ?>
