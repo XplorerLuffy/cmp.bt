@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/../includes/bootstrap.php';
 require __DIR__ . '/../includes/admin-auth.php';
-require __DIR__ . '/../includes/settings.php';
 require_admin();
 $adminTitle = 'About Page';
 
