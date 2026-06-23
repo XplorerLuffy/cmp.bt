@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     set_setting('about_commitment_text', trim($_POST['about_commitment_text'] ?? ''));
     $img = about_handle_upload();
     if ($img) set_setting('about_image', $img);
-    redirect('/admin/about?saved=1');
+    redirect('/cmp/about?saved=1');
 }
 $saved = isset($_GET['saved']);
 

@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("DELETE FROM products WHERE id = ?");
         $stmt->bind_param('s', $id);
         $stmt->execute();
-        redirect('/admin/products');
+        redirect('/cmp/products');
     }
 
     // Save (create or update)
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param('sssssiiiis', $name, $slug, $description, $ingredientsVal, $category, $price, $stock, $isActive, $outOfStock, $id);
             }
             $stmt->execute();
-            redirect('/admin/products');
+            redirect('/cmp/products');
         } else {
             // Create
             $newId = gen_id();
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $db->prepare("INSERT INTO products (id, slug, name, description, ingredients, category, price, image_url, stock, is_active, out_of_stock) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param('ssssssisiii', $newId, $slug, $name, $description, $ingredientsVal, $category, $price, $imagePath, $stock, $isActive, $outOfStock);
             $stmt->execute();
-            redirect('/admin/products');
+            redirect('/cmp/products');
         }
     }
 }
@@ -109,7 +109,7 @@ $v = function ($key, $default = '') use ($editing) { return htmlspecialchars($ed
 
 require __DIR__ . '/../includes/admin-layout.php';
 ?>
-<a href="/admin/products" class="mb-4 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Products</a>
+<a href="/cmp/products" class="mb-4 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Products</a>
 <h1 class="mb-5 text-2xl font-bold text-brand-ink"><?= $isEdit ? 'Edit Product' : 'Add Product' ?></h1>
 
 <?php if ($error): ?><p class="mb-4 max-w-xl rounded-lg bg-red-50 p-3 text-sm font-medium text-red-600"><?= htmlspecialchars($error) ?></p><?php endif; ?>

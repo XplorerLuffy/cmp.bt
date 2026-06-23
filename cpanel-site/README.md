@@ -13,16 +13,16 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
 - `/confirmation?order=...` — order confirmation
 - `/about`, `/contact` — story + contact form
 
-## Admin panel (`/admin`)
-- `/admin/setup` — create the first admin account (works only once)
-- `/admin/login` — log in
-- `/admin` — dashboard (orders, revenue, low stock, top sellers)
-- `/admin/products` — list / add / edit / delete products (with image upload)
-- `/admin/orders` — view & update order statuses
-- `/admin/order?id=...` — order detail
-- `/admin/home` — edit the homepage hero text + feature strip
-- `/admin/about` — edit the About page text + upload its image
-- `/admin/contact` — edit phone / email / location (shown on Contact + footer)
+## Admin panel (`/cmp`)
+- `/cmp/setup` — create the first admin account (works only once)
+- `/cmp/login` — log in
+- `/cmp` — dashboard (orders, revenue, low stock, top sellers)
+- `/cmp/products` — list / add / edit / delete products (with image upload)
+- `/cmp/orders` — view & update order statuses
+- `/cmp/order?id=...` — order detail
+- `/cmp/home` — edit the homepage hero text + feature strip
+- `/cmp/about` — edit the About page text + upload its image
+- `/cmp/contact` — edit phone / email / location (shown on Contact + footer)
 
 ## Deploy
 
@@ -31,7 +31,7 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
    `admins` tables. (First-time setup also needs `migrate.sql` from before.)
    Then run **`migrate3.sql`** to add the `settings` table that powers the
    editable About & Contact pages, and **`migrate4.sql`** to seed default
-   homepage text for `/admin/home`.
+   homepage text for `/cmp/home`.
 2. **Upload everything** to `public_html` (turn on "Show Hidden Files" so
    `.htaccess` and `uploads/.htaccess` upload). **Keep your existing
    `config.php`** with your DB credentials, or re-enter them after extracting:
@@ -42,9 +42,9 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
    ```
 3. **Make `uploads/` writable** — in File Manager, set the `uploads` folder
    permissions to `755` (or `775`) so product image uploads can be saved.
-4. **Create your admin login** — visit `https://www.cmp.bt/admin/setup` once
+4. **Create your admin login** — visit `https://www.cmp.bt/cmp/setup` once
    and set your email + password. After that the setup page locks itself and
-   you log in at `/admin/login`.
+   you log in at `/cmp/login`.
 
 ## Notes
 - Cart is stored server-side in the PHP session.

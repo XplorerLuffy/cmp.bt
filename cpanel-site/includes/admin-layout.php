@@ -1,17 +1,17 @@
 <?php
 /** Admin chrome. Set $adminTitle before requiring. Pair with admin-layout-end.php. */
 $nav = [
-  ['/admin', 'Dashboard', '▦'],
-  ['/admin/products', 'Products', '📦'],
-  ['/admin/orders', 'Orders', '🧾'],
-  ['/admin/home', 'Homepage', '🏠'],
-  ['/admin/about', 'About Page', '📝'],
-  ['/admin/contact', 'Contact Info', '☎'],
+  ['/cmp', 'Dashboard', '▦'],
+  ['/cmp/products', 'Products', '📦'],
+  ['/cmp/orders', 'Orders', '🧾'],
+  ['/cmp/home', 'Homepage', '🏠'],
+  ['/cmp/about', 'About Page', '📝'],
+  ['/cmp/contact', 'Contact Info', '☎'],
 ];
 $here = $_SERVER['REQUEST_URI'];
 function admin_active($href, $here) {
     $path = parse_url($here, PHP_URL_PATH);
-    if ($href === '/admin') return $path === '/admin' || $path === '/admin/' || $path === '/admin/index.php';
+    if ($href === '/cmp') return $path === '/cmp' || $path === '/cmp/' || $path === '/cmp/index.php';
     return strpos($path, $href) === 0;
 }
 ?>
@@ -50,7 +50,7 @@ function admin_active($href, $here) {
     </nav>
     <div class="mt-auto flex flex-col gap-1 border-t border-white/10 pt-3">
       <a href="/" target="_blank" class="rounded-lg px-3 py-2 text-sm hover:bg-admin-sidebar-light/60">↗ View Site</a>
-      <a href="/admin/logout" class="rounded-lg px-3 py-2 text-sm text-accent-rose hover:bg-admin-sidebar-light/60">Log Out</a>
+      <a href="/cmp/logout" class="rounded-lg px-3 py-2 text-sm text-accent-rose hover:bg-admin-sidebar-light/60">Log Out</a>
     </div>
   </aside>
 
@@ -58,7 +58,7 @@ function admin_active($href, $here) {
     <!-- Mobile top bar -->
     <header class="flex items-center justify-between bg-admin-sidebar px-4 py-3 text-white md:hidden">
       <span class="font-semibold">Crystal Moon Admin</span>
-      <a href="/admin/logout" class="text-sm text-accent-rose">Log Out</a>
+      <a href="/cmp/logout" class="text-sm text-accent-rose">Log Out</a>
     </header>
     <nav class="flex gap-1 overflow-x-auto bg-admin-sidebar-light px-2 py-2 md:hidden">
       <?php foreach ($nav as [$href, $label, $icon]): ?>

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     set_setting('contact_phone', trim($_POST['contact_phone'] ?? ''));
     set_setting('contact_email', trim($_POST['contact_email'] ?? ''));
     set_setting('contact_location', trim($_POST['contact_location'] ?? ''));
-    redirect('/admin/contact?saved=1');
+    redirect('/cmp/contact?saved=1');
 }
 $saved = isset($_GET['saved']);
 

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'statu
         $stmt->bind_param('ss', $newStatus, $oid);
         $stmt->execute();
     }
-    redirect('/admin/orders' . (!empty($_POST['filter']) ? '?status=' . urlencode($_POST['filter']) : ''));
+    redirect('/cmp/orders' . (!empty($_POST['filter']) ? '?status=' . urlencode($_POST['filter']) : ''));
 }
 
 $filter = $_GET['status'] ?? '';
@@ -52,9 +52,9 @@ function status_select($order, $filter) {
 <h1 class="mb-6 text-2xl font-bold text-brand-ink">Orders</h1>
 
 <div class="mb-4 flex flex-wrap gap-2">
-  <a href="/admin/orders" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium <?= $filter === '' ? 'bg-brand-ink text-brand-tint' : 'bg-brand-ink/5 text-brand-ink/70 hover:bg-brand-ink/10' ?>">All <span class="rounded-full bg-white px-1.5 py-0.5 text-[10px] font-semibold text-brand-ink/60"><?= $total ?></span></a>
+  <a href="/cmp/orders" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium <?= $filter === '' ? 'bg-brand-ink text-brand-tint' : 'bg-brand-ink/5 text-brand-ink/70 hover:bg-brand-ink/10' ?>">All <span class="rounded-full bg-white px-1.5 py-0.5 text-[10px] font-semibold text-brand-ink/60"><?= $total ?></span></a>
   <?php foreach (ORDER_STATUS_LABELS as $value => $label): ?>
-    <a href="/admin/orders?status=<?= $value ?>" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium <?= $filter === $value ? 'bg-brand-ink text-brand-tint' : 'bg-brand-ink/5 text-brand-ink/70 hover:bg-brand-ink/10' ?>"><?= $label ?> <span class="rounded-full bg-white px-1.5 py-0.5 text-[10px] font-semibold text-brand-ink/60"><?= $counts[$value] ?? 0 ?></span></a>
+    <a href="/cmp/orders?status=<?= $value ?>" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium <?= $filter === $value ? 'bg-brand-ink text-brand-tint' : 'bg-brand-ink/5 text-brand-ink/70 hover:bg-brand-ink/10' ?>"><?= $label ?> <span class="rounded-full bg-white px-1.5 py-0.5 text-[10px] font-semibold text-brand-ink/60"><?= $counts[$value] ?? 0 ?></span></a>
   <?php endforeach; ?>
 </div>
 
@@ -63,7 +63,7 @@ function status_select($order, $filter) {
   <?php foreach ($orders as $o): ?>
     <div class="rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm">
       <div class="mb-1 flex items-center justify-between">
-        <a href="/admin/order?id=<?= urlencode($o['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($o['order_number']) ?></a>
+        <a href="/cmp/order?id=<?= urlencode($o['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($o['order_number']) ?></a>
         <span class="font-semibold text-brand-ink"><?= format_btn((float)$o['subtotal']) ?></span>
       </div>
       <p class="text-sm text-brand-ink/80"><?= htmlspecialchars($o['customer_name']) ?></p>
@@ -86,7 +86,7 @@ function status_select($order, $filter) {
     <tbody>
       <?php foreach ($orders as $o): ?>
         <tr class="border-b border-brand-ink/5">
-          <td class="p-3"><a href="/admin/order?id=<?= urlencode($o['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($o['order_number']) ?></a></td>
+          <td class="p-3"><a href="/cmp/order?id=<?= urlencode($o['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($o['order_number']) ?></a></td>
           <td class="p-3"><?= htmlspecialchars($o['customer_name']) ?></td>
           <td class="p-3"><?= $o['payment_method'] === 'COD' ? 'COD' : 'Bank Transfer' ?></td>
           <td class="p-3"><?= format_btn((float)$o['subtotal']) ?></td>

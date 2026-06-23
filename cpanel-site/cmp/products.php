@@ -14,7 +14,7 @@ require __DIR__ . '/../includes/admin-layout.php';
     <h1 class="text-2xl font-bold text-brand-ink">Products</h1>
     <p class="text-sm text-brand-ink/50"><?= count($products) ?> total</p>
   </div>
-  <a href="/admin/product-edit" class="inline-block w-fit rounded-full bg-brand-ink px-4 py-2 text-sm font-semibold text-brand-tint">+ Add Product</a>
+  <a href="/cmp/product-edit" class="inline-block w-fit rounded-full bg-brand-ink px-4 py-2 text-sm font-semibold text-brand-tint">+ Add Product</a>
 </div>
 
 <?php if (!$products): ?>
@@ -30,7 +30,7 @@ require __DIR__ . '/../includes/admin-layout.php';
             <?php else: ?><div class="flex h-full items-center justify-center text-2xl">🫙</div><?php endif; ?>
           </div>
           <div class="min-w-0 flex-1">
-            <a href="/admin/product-edit?id=<?= urlencode($p['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($p['name']) ?></a>
+            <a href="/cmp/product-edit?id=<?= urlencode($p['id']) ?>" class="font-medium text-brand-blue hover:underline"><?= htmlspecialchars($p['name']) ?></a>
             <p class="text-sm text-brand-ink/60"><?= htmlspecialchars($p['category']) ?></p>
             <p class="font-semibold text-brand-ink"><?= format_btn((float)$p['price']) ?></p>
           </div>
@@ -45,8 +45,8 @@ require __DIR__ . '/../includes/admin-layout.php';
           ?>
         </div>
         <div class="flex gap-2 border-t border-brand-ink/5 pt-3">
-          <a href="/admin/product-edit?id=<?= urlencode($p['id']) ?>" class="flex-1 rounded-lg border border-brand-ink/15 px-3 py-1.5 text-center text-sm font-medium hover:bg-brand-tint">Edit</a>
-          <form method="post" action="/admin/product-edit" onsubmit="return confirm('Delete this product?')">
+          <a href="/cmp/product-edit?id=<?= urlencode($p['id']) ?>" class="flex-1 rounded-lg border border-brand-ink/15 px-3 py-1.5 text-center text-sm font-medium hover:bg-brand-tint">Edit</a>
+          <form method="post" action="/cmp/product-edit" onsubmit="return confirm('Delete this product?')">
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="id" value="<?= htmlspecialchars($p['id']) ?>">
             <button class="rounded-lg border border-accent-rose/30 px-3 py-1.5 text-sm font-medium text-accent-rose hover:bg-accent-rose-tint">Delete</button>

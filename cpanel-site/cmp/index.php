@@ -49,11 +49,11 @@ function stat_card($label, $value, $badge, $icon) {
   <div class="rounded-xl border border-brand-ink/10 bg-white p-4 shadow-sm">
     <div class="mb-4 flex items-center justify-between">
       <h2 class="font-semibold text-brand-ink">Recent Orders</h2>
-      <a href="/admin/orders" class="text-sm font-medium text-brand-blue hover:underline">View All</a>
+      <a href="/cmp/orders" class="text-sm font-medium text-brand-blue hover:underline">View All</a>
     </div>
     <div class="flex flex-col gap-3">
       <?php foreach ($recent as $o): ?>
-        <a href="/admin/order?id=<?= urlencode($o['id']) ?>" class="flex items-center justify-between gap-2 rounded-lg border border-brand-ink/5 p-2.5 hover:bg-brand-tint/60">
+        <a href="/cmp/order?id=<?= urlencode($o['id']) ?>" class="flex items-center justify-between gap-2 rounded-lg border border-brand-ink/5 p-2.5 hover:bg-brand-tint/60">
           <div class="min-w-0">
             <p class="truncate text-sm font-medium text-brand-ink"><?= htmlspecialchars($o['order_number']) ?></p>
             <p class="truncate text-xs text-brand-ink/60"><?= htmlspecialchars($o['customer_name']) ?></p>
@@ -90,7 +90,7 @@ function stat_card($label, $value, $badge, $icon) {
     <h2 class="mb-4 font-semibold text-brand-ink">Low Stock Products</h2>
     <div class="flex flex-col gap-3">
       <?php foreach ($lowStock as $p): ?>
-        <a href="/admin/product-edit?id=<?= urlencode($p['id']) ?>" class="flex items-center justify-between gap-2 rounded-lg border border-brand-ink/5 p-2.5 hover:bg-brand-tint/60">
+        <a href="/cmp/product-edit?id=<?= urlencode($p['id']) ?>" class="flex items-center justify-between gap-2 rounded-lg border border-brand-ink/5 p-2.5 hover:bg-brand-tint/60">
           <span class="truncate text-sm font-medium text-brand-ink"><?= htmlspecialchars($p['name']) ?></span>
           <span class="shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold <?= ($p['out_of_stock'] || $p['stock'] == 0) ? 'bg-accent-rose-tint text-accent-rose' : 'bg-accent-amber-tint text-accent-amber' ?>">
             <?= ($p['out_of_stock'] || $p['stock'] == 0) ? 'Out of stock' : ((int)$p['stock'] . ' left') ?>

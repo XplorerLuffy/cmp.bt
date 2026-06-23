@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'statu
         $stmt->bind_param('ss', $newStatus, $id);
         $stmt->execute();
     }
-    redirect('/admin/order?id=' . urlencode($id));
+    redirect('/cmp/order?id=' . urlencode($id));
 }
 
 $stmt = $db->prepare("SELECT * FROM orders WHERE id = ? LIMIT 1");
@@ -25,7 +25,7 @@ $order = $stmt->get_result()->fetch_assoc();
 if (!$order) {
     $adminTitle = 'Order';
     require __DIR__ . '/../includes/admin-layout.php';
-    echo '<p class="text-brand-ink/60">Order not found. <a href="/admin/orders" class="text-brand-blue hover:underline">Back to orders</a></p>';
+    echo '<p class="text-brand-ink/60">Order not found. <a href="/cmp/orders" class="text-brand-blue hover:underline">Back to orders</a></p>';
     require __DIR__ . '/../includes/admin-layout-end.php';
     exit;
 }
@@ -38,7 +38,7 @@ $items = $istmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $adminTitle = $order['order_number'];
 require __DIR__ . '/../includes/admin-layout.php';
 ?>
-<a href="/admin/orders" class="mb-4 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Orders</a>
+<a href="/cmp/orders" class="mb-4 inline-block text-sm font-medium text-brand-ink/60 hover:text-brand-blue">&larr; Back to Orders</a>
 
 <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
   <div>

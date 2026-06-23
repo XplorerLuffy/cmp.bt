@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         set_setting("home_feature{$n}_title", trim($_POST["home_feature{$n}_title"] ?? ''));
         set_setting("home_feature{$n}_text", trim($_POST["home_feature{$n}_text"] ?? ''));
     }
-    redirect('/admin/home?saved=1');
+    redirect('/cmp/home?saved=1');
 }
 $saved = isset($_GET['saved']);
 

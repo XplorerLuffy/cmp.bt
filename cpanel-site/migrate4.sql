@@ -1,5 +1,5 @@
 -- Run ONCE in phpMyAdmin (database cmpbt_cmpbt) to seed default homepage
--- text so /admin/home has starting values. Safe to re-run.
+-- text so /cmp/home has starting values. Safe to re-run.
 -- (Not strictly required — the homepage falls back to these same defaults
 -- in code even if this is skipped — but running it keeps the settings
 -- table in sync with what's shown.)
