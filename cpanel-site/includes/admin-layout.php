@@ -4,6 +4,7 @@ $nav = [
   ['/admin', 'Dashboard', '▦'],
   ['/admin/products', 'Products', '📦'],
   ['/admin/orders', 'Orders', '🧾'],
+  ['/admin/home', 'Homepage', '🏠'],
   ['/admin/about', 'About Page', '📝'],
   ['/admin/contact', 'Contact Info', '☎'],
 ];

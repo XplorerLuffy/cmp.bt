@@ -20,6 +20,7 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
 - `/admin/products` — list / add / edit / delete products (with image upload)
 - `/admin/orders` — view & update order statuses
 - `/admin/order?id=...` — order detail
+- `/admin/home` — edit the homepage hero text + feature strip
 - `/admin/about` — edit the About page text + upload its image
 - `/admin/contact` — edit phone / email / location (shown on Contact + footer)
 
@@ -29,7 +30,8 @@ header, animated hero, product grid, cart, checkout, and a full admin panel.
    It adds the `stock` column and creates the `orders`, `order_items`, and
    `admins` tables. (First-time setup also needs `migrate.sql` from before.)
    Then run **`migrate3.sql`** to add the `settings` table that powers the
-   editable About & Contact pages.
+   editable About & Contact pages, and **`migrate4.sql`** to seed default
+   homepage text for `/admin/home`.
 2. **Upload everything** to `public_html` (turn on "Show Hidden Files" so
    `.htaccess` and `uploads/.htaccess` upload). **Keep your existing
    `config.php`** with your DB credentials, or re-enter them after extracting:

@@ -6,6 +6,10 @@ $db = get_db();
 $result = $db->query("SELECT * FROM products WHERE is_active = 1 ORDER BY created_at DESC LIMIT 8");
 $featured = $result->fetch_all(MYSQLI_ASSOC);
 
+$heroTagline = get_setting('home_tagline', 'Handmade in Bhutan');
+$heroHeading = get_setting('home_heading', "Achaar, crafted under\na crystal moon.");
+$heroSubtext = get_setting('home_subtext', 'Small-batch Bhutanese pickles made with traditional family recipes, fresh local chilies, and a whole lot of patience.');
+
 require __DIR__ . '/includes/header.php';
 ?>
 
@@ -16,12 +20,12 @@ require __DIR__ . '/includes/header.php';
   <div class="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-20 text-center sm:py-28">
     <img src="/logo.png" alt="Crystal Moon Products logo"
          class="reveal h-20 w-20 rounded-full object-contain drop-shadow-lg sm:h-24 sm:w-24">
-    <p class="reveal text-xs font-semibold uppercase tracking-[0.3em] text-brand-blue" style="animation-delay:.1s">Handmade in Bhutan</p>
+    <p class="reveal text-xs font-semibold uppercase tracking-[0.3em] text-brand-blue" style="animation-delay:.1s"><?= htmlspecialchars($heroTagline) ?></p>
     <h1 class="reveal max-w-2xl font-display text-4xl font-medium leading-tight text-brand-ink sm:text-6xl" style="animation-delay:.2s">
-      Achaar, crafted under<br>a crystal moon.
+      <?= nl2br(htmlspecialchars($heroHeading)) ?>
     </h1>
     <p class="reveal max-w-xl text-brand-ink/65 sm:text-lg" style="animation-delay:.3s">
-      Small-batch Bhutanese pickles made with traditional family recipes, fresh local chilies, and a whole lot of patience.
+      <?= htmlspecialchars($heroSubtext) ?>
     </p>
     <div class="reveal mt-2 flex flex-col gap-3 sm:flex-row" style="animation-delay:.4s">
       <a href="/products" class="rounded-full bg-brand-blue px-7 py-3 font-display font-semibold text-white shadow-lg shadow-brand-blue/30 transition hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-xl">Shop Our Pickles</a>
@@ -54,15 +58,15 @@ require __DIR__ . '/includes/header.php';
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-3 sm:text-center">
     <?php
     $features = [
-      ['🤲', 'Handmade in Bhutan', 'Every jar is made by hand using recipes passed down through generations.'],
-      ['🌿', 'Fresh, Local Ingredients', 'We source chilies, vegetables, and spices from local Bhutanese farmers.'],
-      ['🚚', 'Delivered Across Bhutan', 'Cash on delivery or bank transfer — order from anywhere in the country.'],
+      [get_setting('home_feature1_emoji', '🤲'), get_setting('home_feature1_title', 'Handmade in Bhutan'), get_setting('home_feature1_text', 'Every jar is made by hand using recipes passed down through generations.')],
+      [get_setting('home_feature2_emoji', '🌿'), get_setting('home_feature2_title', 'Fresh, Local Ingredients'), get_setting('home_feature2_text', 'We source chilies, vegetables, and spices from local Bhutanese farmers.')],
+      [get_setting('home_feature3_emoji', '🚚'), get_setting('home_feature3_title', 'Delivered Across Bhutan'), get_setting('home_feature3_text', 'Cash on delivery or bank transfer — order from anywhere in the country.')],
     ];
     foreach ($features as $i => [$emoji, $title, $text]): ?>
       <div class="reveal flex flex-col items-center gap-2" style="animation-delay: <?= $i * 0.1 ?>s">
-        <div class="mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-2xl"><?= $emoji ?></div>
-        <h3 class="font-display font-semibold text-brand-ink"><?= $title ?></h3>
-        <p class="text-sm text-brand-ink/70"><?= $text ?></p>
+        <div class="mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-2xl"><?= htmlspecialchars($emoji) ?></div>
+        <h3 class="font-display font-semibold text-brand-ink"><?= htmlspecialchars($title) ?></h3>
+        <p class="text-sm text-brand-ink/70"><?= htmlspecialchars($text) ?></p>
       </div>
     <?php endforeach; ?>
   </div>
