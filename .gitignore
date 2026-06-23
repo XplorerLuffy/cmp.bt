@@ -44,3 +44,4 @@ next-env.d.ts
 
 # Generated cPanel deploy artifact
 cmp-bt-cpanel-site.zip
+cpanel-site.zip
