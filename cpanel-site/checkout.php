@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $db->commit();
                 } catch (Throwable $e) {
                     $db->rollback();
+                    error_log('Checkout order insert failed: ' . $e->getMessage());
                     $serverError = 'Something went wrong placing your order. Please try again.';
                 }
 
