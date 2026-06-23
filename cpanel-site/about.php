@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/config.php';
+require __DIR__ . '/includes/bootstrap.php';
 $pageTitle = 'About';
 require __DIR__ . '/includes/header.php';
 ?>

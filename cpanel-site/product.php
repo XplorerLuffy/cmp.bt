@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/config.php';
+require __DIR__ . '/includes/bootstrap.php';
 
 $slug = $_GET['slug'] ?? '';
 if ($slug === '') { header('Location: /products'); exit; }
@@ -56,9 +56,30 @@ require __DIR__ . '/includes/header.php';
       <?php if ($product['out_of_stock']): ?>
         <span class="inline-block rounded-full bg-brand-ink px-5 py-3 text-center text-sm font-semibold text-white">Out of Stock</span>
       <?php else: ?>
-        <div class="rounded-xl border border-brand-blue/20 bg-brand-blue/5 p-4">
-          <p class="text-sm text-brand-ink/75">To order, <a href="/contact" class="font-semibold text-brand-blue hover:underline">contact us</a> — cash on delivery or bank transfer, anywhere in Bhutan.</p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div class="flex items-center rounded-full border border-brand-ink/20">
+            <button type="button" id="qtyMinus" class="h-10 w-10 text-lg">−</button>
+            <input id="qtyInput" type="text" inputmode="numeric" value="1" class="w-10 border-0 text-center text-sm font-medium focus:outline-none" readonly>
+            <button type="button" id="qtyPlus" class="h-10 w-10 text-lg">+</button>
+          </div>
+          <form method="post" action="/cart-action" class="flex flex-1 gap-3">
+            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']) ?>">
+            <input type="hidden" name="quantity" id="qtyAdd" value="1">
+            <input type="hidden" name="return" value="/product/<?= urlencode($product['slug']) ?>">
+            <button type="submit" name="action" value="add" class="flex-1 rounded-full border border-brand-ink/20 px-5 py-3 text-sm font-semibold text-brand-ink transition hover:bg-brand-ink/5">Add to Cart</button>
+            <button type="submit" name="action" value="buy" class="flex-1 rounded-full bg-brand-ink px-5 py-3 text-sm font-semibold text-brand-tint transition hover:bg-brand-blue-light">Buy Now</button>
+          </form>
         </div>
+        <p class="text-sm text-brand-ink/55">Cash on delivery or bank transfer — delivered anywhere in Bhutan.</p>
+        <script>
+          (function () {
+            var input = document.getElementById('qtyInput');
+            var hidden = document.getElementById('qtyAdd');
+            function set(v) { v = Math.max(1, v); input.value = v; hidden.value = v; }
+            document.getElementById('qtyMinus').onclick = function () { set(parseInt(input.value) - 1); };
+            document.getElementById('qtyPlus').onclick = function () { set(parseInt(input.value) + 1); };
+          })();
+        </script>
       <?php endif; ?>
     </div>
   </div>

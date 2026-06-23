@@ -1,0 +1,7 @@
+# Allow images to be served, but never execute scripts from uploads.
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|pht|pl|py|cgi|sh|asp|aspx)$">
+  Require all denied
+</FilesMatch>
+Options -ExecCGI
+RemoveHandler .php .phtml .php5 .php7
+AddType text/plain .php .phtml

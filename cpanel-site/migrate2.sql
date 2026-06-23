@@ -1,0 +1,38 @@
+-- Run ONCE in phpMyAdmin (database cmpbt_cmpbt) to enable cart, checkout,
+-- orders, and the admin panel. Safe to re-run.
+
+-- Stock column for products (used by the admin panel)
+ALTER TABLE products
+  ADD COLUMN IF NOT EXISTS stock INT NOT NULL DEFAULT 100;
+
+CREATE TABLE IF NOT EXISTS orders (
+  id VARCHAR(40) PRIMARY KEY,
+  order_number VARCHAR(40) NOT NULL UNIQUE,
+  customer_name VARCHAR(190) NOT NULL,
+  phone VARCHAR(40) NOT NULL,
+  dzongkhag VARCHAR(120) NOT NULL,
+  address TEXT NOT NULL,
+  email VARCHAR(190) DEFAULT NULL,
+  payment_method ENUM('COD','BANK_TRANSFER') NOT NULL DEFAULT 'COD',
+  status ENUM('PENDING_PAYMENT_VERIFICATION','CONFIRMED','PROCESSING','OUT_FOR_DELIVERY','DELIVERED','CANCELLED') NOT NULL DEFAULT 'PENDING_PAYMENT_VERIFICATION',
+  subtotal INT NOT NULL,
+  notes TEXT DEFAULT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id VARCHAR(40) NOT NULL,
+  product_id VARCHAR(40) DEFAULT NULL,
+  name VARCHAR(190) NOT NULL,
+  price INT NOT NULL,
+  quantity INT NOT NULL,
+  CONSTRAINT fk_order_items_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

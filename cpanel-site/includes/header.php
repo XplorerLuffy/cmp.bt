@@ -89,7 +89,16 @@ $currentPath = $current === 'index.php' ? '/' : '/' . preg_replace('/\.php$/', '
         <?php endforeach; ?>
       </nav>
 
-      <button id="menuBtn" aria-label="Toggle menu" class="text-xl text-brand-ink md:hidden">☰</button>
+      <div class="flex items-center gap-3">
+        <a href="/cart" class="relative flex items-center gap-1.5 rounded-full border border-brand-blue/30 px-3.5 py-1.5 text-sm font-medium text-brand-ink transition hover:border-brand-blue hover:bg-brand-blue/5">
+          <span aria-hidden="true">🛍️</span>
+          <span class="hidden sm:inline">Cart</span>
+          <?php $cc = function_exists('cart_count') ? cart_count() : 0; if ($cc > 0): ?>
+            <span class="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-blue px-1 text-xs font-bold text-white"><?= $cc ?></span>
+          <?php endif; ?>
+        </a>
+        <button id="menuBtn" aria-label="Toggle menu" class="text-xl text-brand-ink md:hidden">☰</button>
+      </div>
     </div>
 
     <nav id="mobileMenu" class="hidden flex-col gap-1 border-t border-black/5 px-4 pb-2 md:hidden">
