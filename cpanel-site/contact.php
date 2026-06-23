@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/includes/bootstrap.php';
-require __DIR__ . '/includes/settings.php';
 $pageTitle = 'Contact';
 
 $sent = false;
